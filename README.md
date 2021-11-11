@@ -1,2 +1,2 @@
 # **[Alli_cator](#)**
-Alli_cator is a full stack web application which allows users within the complaints functionality of a business to manage their case load via a sleek, intuitive and user friendly interface. 
+Alli_cator is a full stack web application which allows users within the complaints function of a business (in this case the business I work for when I'm not pulling my hair out over a page of code) to manage their case load via a sleek, intuitive and user friendly interface. 
