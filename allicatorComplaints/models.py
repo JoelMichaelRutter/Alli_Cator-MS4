@@ -15,6 +15,7 @@ from django.contrib.auth.models import User
 
 class Complaint(models.Model):
     log_number = models.CharField(max_length=10, unique=True, null=False, blank=False)
+    slug = models.SlugField(max_length=10, unique=True)
     customer_surname = models.CharField(max_length=40, null=False, blank=False)
     complaint_category = models.CharField(max_length=100, null=False, blank=False)
     date_logged = models.DateTimeField()
