@@ -8,4 +8,7 @@ from django.views import generic
 from .models import Complaint
 
 # Create your views here.
-# class ComplaintList(generic.ListView):
+
+
+class ComplaintList(generic.ListView):
+    model = Complaint
