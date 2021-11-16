@@ -3,12 +3,14 @@
 {% block content %}
 <!-- ADD COMPLAINT BUTTON & COMPLAINT LIST CONTENT -->
 {% if user.is_authenticated %}
-<div class="container-fluid">
+<div class="container">
     <!-- BUTTON ROW -->
     <div class="row">
         <div class="col-sm-12 mt-4">
+            <a href="/add-complaint">
             <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add
                 Complaint</button>
+            </a>
         </div>
     </div>
     <!-- LIST ROW -->
@@ -28,7 +30,7 @@
                             <div class="complaint-list-info">{{ complaint.case_owner }}</div>
                         </button>
                     </h2>
-                    <div id="collapse{{complaint.log_number}}" class="accordion-collapse collapse show"
+                    <div id="collapse{{complaint.log_number}}" class="accordion-collapse collapse"
                         aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div>{{ complaint.complaint_category }}</div>

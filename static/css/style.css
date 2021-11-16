@@ -18,6 +18,12 @@
 }
 
 
+.form-div {
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 
 /* This will need to be applied for mobiles - will also need to have some sort of label that disappears on tablet view and a table with the headings appears at top of accordion */
 /* .accordion-button {

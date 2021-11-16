@@ -19,7 +19,6 @@ class Complaint(models.Model):
     customer_surname = models.CharField(max_length=40, null=False, blank=False)
     complaint_category = models.CharField(max_length=100, null=False, blank=False)
     date_logged = models.DateTimeField()
-    breach_date = models.DateTimeField()
     case_owner = models.ForeignKey(User, on_delete=models.CASCADE)
     welcome_email = models.BooleanField(null=False, blank=False)
     customer_contacted = models.BooleanField(null=False, blank=False)
