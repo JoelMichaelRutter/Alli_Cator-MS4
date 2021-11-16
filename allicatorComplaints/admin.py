@@ -15,3 +15,12 @@ from .models import Complaint
 @admin.register(Complaint)
 class ComplaintAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('log_number',)}
+    list_filter = ('date_logged', 'complaint_category')
+    list_display = (
+        'log_number',
+        'date_logged',
+        'customer_surname',
+        'complaint_category',
+        'case_owner'
+        )
+    search_fields = ['log_number', 'customer_surname']
