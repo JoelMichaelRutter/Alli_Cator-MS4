@@ -1,0 +1,25 @@
+/* FONT IMPORTS AND STYLE RULES */
+/* ROBOTO MONO - HEADINGS */
+/* CSS rules to specify families - font-family: 'Roboto Mono', monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap');
+
+
+
+
+
+/* GENERAL STYLINGS & HELPER CLASSES */
+
+.bg-dark {
+    background-color: #759252!important;
+}
+
+.roboto-font {
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+
+/* This will need to be applied for mobiles - will also need to have some sort of label that disappears on tablet view and a table with the headings appears at top of accordion */
+/* .accordion-button {
+    display: block;
+} */
