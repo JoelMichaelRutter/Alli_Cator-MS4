@@ -10,5 +10,8 @@ from .models import Complaint
 # Create your views here.
 
 
-class ComplaintList(generic.ListView):
+class ViewComplaintList(generic.ListView):
     model = Complaint
+    complaint_list = Complaint.objects.filter().order_by('date_logged')
+    template_name = 'index.html'
+    paginate_by = 10
