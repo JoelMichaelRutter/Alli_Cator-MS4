@@ -64,3 +64,21 @@ input[type=number] {
 .modal-header {
     background-color: #759252;
 }
+
+
+footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background:#6cf;
+}
+
+/* ACCOUNTS FORMS CUSTOMER STYLINGS */
+
+.custom-container {
+    margin-top: 4rem;
+    background-color: lightgrey;
+    padding: 15px;
+    border-radius: 8px;
+}
