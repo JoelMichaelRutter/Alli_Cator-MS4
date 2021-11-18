@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 <!-- ADD COMPLAINT BUTTON & COMPLAINT LIST CONTENT -->
 {% if user.is_authenticated %}
@@ -44,10 +44,11 @@
                             <a href="{% url 'edit-complaint' complaint.log_number %}">
                                 <button type="button" class="btn btn-primary">Edit Complaint</button>
                             </a>
-                            <!-- DELETE COMPLAINT BUTTON -->
-                            <a href="#">
-                                <button type="button" class="btn btn-warning">Delete Complaint</button>
-                            </a>
+                            <!-- DELETE COMPLAINT BUTTON - THIS TRIGGERS MODAL TO ENSURE THAT COMPLAINTS ARE NOT DELETED UNINTENIONALLY -->
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#deleteComplaintModal">
+                                Delete Complaint
+                            </button>
                         </div>
                     </div>
                     {% endfor %}
@@ -88,4 +89,34 @@
         </div>
     </div>
     {% endif %}
+    <!-- MODAL FOR DELETING COMPLAINTS. -->
+    <div class="modal fade" id="deleteComplaintModal" tabindex="-1" aria-labelledby="deleteComplaint"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img class="modal-logo" src="{% static 'images/allicator-icon.png' %}"
+                        alt="The Alli_cator logo - Icon made by Freepik from www.flaticon.com">
+                    <h5 class="modal-title" id="deleteComplaint">Feeding your complaint to the Alli_cator?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Are you sure you would like to do this?</h5>
+                    <p>You should only delete a complaint if:</p>
+                    <ul>
+                        <li>You have been in contact with the customer and provided a fair outcome.</li>
+                        <li>You have attempted to contact the customer via all available channels and they have not
+                            responded.</li>
+                    </ul>
+                    <p>Please choose one of the options below.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form>
+                        <button type="button" class="btn btn-primary">Delete Complaint</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endblock %}

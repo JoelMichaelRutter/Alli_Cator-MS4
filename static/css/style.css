@@ -52,3 +52,15 @@ input[type=number] {
 .complaint-list-info {
     width: 16%;
 }
+
+
+
+
+.modal-title {
+    color: whitesmoke;
+}
+
+
+.modal-header {
+    background-color: #759252;
+}
