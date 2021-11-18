@@ -9,5 +9,6 @@ from . import views
 
 urlpatterns = [
     path('', views.ViewComplaintList.as_view(), name="home"),
-    path('add-complaint', views.add_complaint, name='add-complaint')
+    path('add-complaint', views.add_complaint, name='add-complaint'),
+    path('edit-complaint/<log_number>/', views.edit_complaint, name='edit-complaint')
 ]

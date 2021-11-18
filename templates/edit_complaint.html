@@ -2,28 +2,29 @@
 
 {% block content %}
 <div class="container">
-    <!-- COMPLAINT FORM ------------------------------------------------------------------------------------------------>
+    <!-- COMPLAINT FORM -->
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2 mt-4 form-div">
-            <form method="POST" action="/add-complaint">
-                <h3 class="form-heading">Add a complaint</h3>
+            <form method="POST" action="/edit-complaint">
+                <h3 class="form-heading">Edit a complaint</h3>
                 {% csrf_token %}
-                <!-- LOG NUMBER INPUT ----------------------------------------------------------------------------------->
+                <!-- LOG NUMBER INPUT -------------------------------------------------------------------------->
                 <div class="form-floating mb-3">
                     <input class="form-control" id="log_number" name="log_number" type="number"
-                        placeholder="Complaint Log Number" data-sb-validations="required" maxlength="10" required />
+                        value="{{ complaint.log_number }}" placeholder="Complaint Log Number"
+                        data-sb-validations="required" maxlength="10" required readonly />
                     <small id="passwordHelpBlock" class="form-text text-muted">
                         The log number should be numbers only and a maximum of 10 characters.
                     </small>
                     <label for="log_number">Complaint Log Number</label>
                     <div class="invalid-feedback" data-sb-feedback="log_number:required">Complaint Log Number is
-                        required.
-                    </div>
+                        required.</div>
                 </div>
-                <!-- CUSTOMER SURNAME INPUT ----------------------------------------------------------------------------->
+                <!-- CUSTOMER SURNAME INPUT ------------------------------------------------------------------->
                 <div class="form-floating mb-3">
                     <input class="form-control" id="customer_surname" name="customer_surname" type="text"
-                        placeholder="Customer Surname" data-sb-validations="required" maxlength="40" required />
+                        placeholder="Customer Surname" data-sb-validations="required" maxlength="40"
+                        value="{{ complaint.customer_surname }}" required />
                     <small id="passwordHelpBlock" class="form-text text-muted">
                         Maximum of 40 characters.
                     </small>
@@ -31,72 +32,96 @@
                     <div class="invalid-feedback" data-sb-feedback="customer_surname:required">Customer Surname is
                         required.</div>
                 </div>
-                <!-- COMPLAINT CATEGORY INPUT --------------------------------------------------------------------------->
+                <!-- COMPLAINT CATEGORY INPUT ---------------------------------------------------------------->
                 <div class="form-floating mb-3">
                     <input class="form-control" id="complaint_category" name="complaint_category" type="text"
-                        placeholder="Complaint Category" data-sb-validations="required" maxlength="100" />
+                        placeholder="Complaint Category" data-sb-validations="required" maxlength="100"
+                        value="{{ complaint.complaint_category }}" />
                     <small id="passwordHelpBlock" class="form-text text-muted">
                         Maximum of 100 characters.
                     </small>
                     <label for="complaint_category">Complaint Category</label>
-                    <div class="invalid-feedback" data-sb-feedback="complaint_categoryrequired">Complaint Category is
+                    <div class="invalid-feedback" data-sb-feedback="complaintCategory:required">Complaint Category is
                         required.</div>
                 </div>
-                <!-- DATE LOGGED INPUT ----------------------------------------------------------------------------------->
+                <!-- DATE LOGGED INPUT ----------------------------------------------------------------------->
                 <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="date_logged" name="date_logged">
-                    <label for="date_logged">Date and time complaint was logged</label>
+                    {% load l10n %}
+                        <input type="date" class="form-control" id="date_logged" name="date_logged"
+                            value="{{ complaint.date_logged|date:'Y-m-d' }}">
+                        <label for="date_logged">Date complaint was logged</label>
                 </div>
-                <!-- CASE OWNER INPUT (READ ONLY - LOCKED TO USERNAME OF LOGGED IN USER) ---------------------------------->
+                <!-- CASE OWNER INPUT (READ ONLY - LOCKED TO USERNAME OF LOGGED IN USER) --------------------->
                 <div class="form-floating mb-3">
                     <input class="form-control" type="text" name="case_owner" value="{{user.username}}"
                         aria-label="This input is disabled and locked to your user id." readonly>
                     <label for="case_owner">Case Owner</label>
                     <div class="invalid-feedback" data-sb-feedback="case_owner:required">Case Owner is required.</div>
                 </div>
-                <!-- COMPLAINT STATUS SWITCHES ---------------------------------------------------------------------------->
+                <!-- COMPLAINT STATUS SWITCHES --------------------------------------------------------------->
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-5">
-                        <!-- WELCOME EMAIL SWITCH ------------------------------------------------------------------------->
+                        <!-- WELCOME EMAIL SWITCH ------------------------------------------------------------>
                         <div class="mb-3">
                             <div class="form-check form-switch">
+                                {% if complaint.welcome_email %}
+                                <input class="form-check-input" id="welcome_email" type="checkbox" name="welcome_email"
+                                    value="true" checked />
+                                {% else %}
                                 <input class="form-check-input" id="welcome_email" type="checkbox" name="welcome_email"
                                     value="true" />
+                                {% endif %}
                                 <label class="form-check-label" for="welcome_email">Welcome email sent</label>
                             </div>
                         </div>
-                        <!-- CUSTOMER CONTACTED SWITCH -------------------------------------------------------------------->
+                        <!-- CUSTOMER CONTACTED SWITCH ------------------------------------------------------>
                         <div class="mb-3">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" id="customer_contacted" type="checkbox"
-                                    name="customer_contacted" value="true" />
+                                {% if complaint.customer_contacted %}
+                                    <input class="form-check-input" id="customer_contacted" type="checkbox"
+                                    name="customer_contacted" value="true" checked />
+                                {% else %}
+                                    <input class="form-check-input" id="customer_contacted" type="checkbox"
+                                        name="customer_contacted" value="true" />
+                                {% endif %}
                                 <label class="form-check-label" for="customer_contacted">Customer contacted</label>
                             </div>
                         </div>
-                        <!-- HOLDING CORRESPONDENCE SWITCH ---------------------------------------------------------------->
+                        <!-- HOLDING CORRESPONDENCE SWITCH ---------------------------------------------------->
                         <div class="mb-3">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" id="holding_correspondence" type="checkbox"
+                                {% if complaint.holding_correspondence %}
+                                    <input class="form-check-input" id="holding_correspondence" type="checkbox"
+                                    name="holding_correspondence" value="true" checked />
+                                {% else %}
+                                    <input class="form-check-input" id="holding_correspondence" type="checkbox"
                                     name="holding_correspondence" value="true" />
+                                {% endif %}
                                 <label class="form-check-label" for="holding_correspondence">Holding correspondence
                                     sent</label>
                             </div>
                         </div>
-                        <!-- OUTSTANDING ACTIONS SWITCH -------------------------------------------------------------------->
+                        <!-- OUTSTANDING ACTIONS SWITCH --------------------------------------------------------->
                         <div class="mb-3">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" id="outstanding_actions" type="checkbox"
-                                    name="outstanding_actions" value="true" />
+                                {% if complaint.outstanding_actions %}
+                                    <input class="form-check-input" id="outstanding_actions" type="checkbox"
+                                        name="outstanding_actions" value="true" checked />
+                                    <label class="form-check-label" for="outstanding_actions">Outstanding actions</label>
+                                {% else %}
+                                    <input class="form-check-input" id="outstanding_actions" type="checkbox"
+                                            name="outstanding_actions" value="true" />
+                                {% endif %}
                                 <label class="form-check-label" for="outstanding_actions">Outstanding actions</label>
                             </div>
                         </div>
                     </div>
-                    <!-- LATEST UPDATE TEXT AREA ---------------------------------------------------------------------------->
+                    <!-- LATEST UPDATE TEXT AREA ------------------------------------------------------------------>
                     <div class="col-md-6 col-lg-7">
                         <div class="form-floating mb-3">
                             <textarea class="form-control" id="latest_update" name="latest_update" type="text"
                                 placeholder="Latest Update" style="height: 10rem;" data-sb-validations="required"
-                                maxlength="250" required></textarea>
+                                maxlength="250" required>{{ complaint.latest_update }}</textarea>
                             <small id="passwordHelpBlock" class="form-text text-muted">
                                 Maximum of 250 characters.
                             </small>
@@ -110,7 +135,7 @@
                 <div class="form-floating mb-3 d-flex justify-content-around">
                     <button type="reset" class="btn btn-warning btn-lg"><i class="fas fa-undo-alt"></i></i> Reset
                         Form</button>
-                    <button type="submit" class="btn btn-primary btn-lg"><i class="far fa-save"></i> Save
+                    <button type="submit" class="btn btn-primary btn-lg"><i class="far fa-save"></i> Update
                         Complaint</button>
                 </div>
             </form>

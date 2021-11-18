@@ -6,7 +6,7 @@
 <div class="container">
     <!-- BUTTON ROW -->
     <div class="row">
-        <div class="col-sm-12 mt-4">
+        <div class="col-sm-12 mt-4 d-flex justify-content-center">
             <a href="/add-complaint">
                 <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add
                     Complaint</button>
@@ -23,10 +23,10 @@
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapse{{complaint.log_number }}" aria-expanded="true"
                             aria-controls="collapseOne">
-                            <div class="complaint-list-info-container">
+                            <div class="complaint-list-info-container d-sm-block d-md-inline-flex">
                                 <div class="complaint-list-info">{{ complaint.log_number }}</div>
                                 <div class="complaint-list-info">{{ complaint.customer_surname }}</div>
-                                <div class="complaint-list-info">{{ complaint.date_logged }}</div>
+                                <div class="complaint-list-info">{{ complaint.date_logged|date:'d/m/Y' }}</div>
                                 <div class="complaint-list-info">{{ complaint.complaint_category}}</div>
                                 <div class="complaint-list-info">{{ complaint.case_owner }}</div>
                             </div>
@@ -41,7 +41,7 @@
                             <div>{{ complaint.outstanding_actions }}</div>
                             <div>{{ complaint.latest_update }}</div>
                             <!-- EDIT COMPLAINT BUTTON -->
-                            <a href="#">
+                            <a href="{% url 'edit-complaint' complaint.log_number %}">
                                 <button type="button" class="btn btn-primary">Edit Complaint</button>
                             </a>
                             <!-- DELETE COMPLAINT BUTTON -->

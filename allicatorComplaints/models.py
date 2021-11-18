@@ -18,7 +18,7 @@ class Complaint(models.Model):
     slug = models.SlugField(max_length=10, unique=True, null=True)
     customer_surname = models.CharField(max_length=40, null=False, blank=False)
     complaint_category = models.CharField(max_length=100, null=False, blank=False)
-    date_logged = models.DateTimeField()
+    date_logged = models.DateField()
     case_owner = models.ForeignKey(User, on_delete=models.CASCADE)
     welcome_email = models.BooleanField(null=False, blank=False)
     customer_contacted = models.BooleanField(null=False, blank=False)
@@ -27,7 +27,7 @@ class Complaint(models.Model):
     latest_update = models.TextField(max_length=250, unique=True, null=False, blank=False)
 
     class Meta:
-        ordering = ['-date_logged']
+        ordering = ['date_logged']
 
     def __str__(self):
         return self.log_number
