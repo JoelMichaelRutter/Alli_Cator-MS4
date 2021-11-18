@@ -7,7 +7,7 @@
     <!-- BUTTON ROW -->
     <div class="row">
         <div class="col-sm-12 mt-4 d-flex justify-content-center">
-            <a href="/add-complaint">
+            <a href="{% url 'add-complaint' %}">
                 <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add
                     Complaint</button>
             </a>
@@ -77,11 +77,11 @@
                 <h3>Welcome to Alli_cator!</h3>
                 <p>It doesn't look like we're acquainted at the moment, please choose one of the options below.</p>
                 <!-- SIGN IN BUTTON -->
-                <a href="#">
+                <a href="{% url 'account_login' %}">
                     <button type="button" class="btn btn-primary">Sign In</button>
                 </a>
                 <!-- REGISTER BUTTON -->
-                <a href="#">
+                <a href="{% url 'account_signup' %}">
                     <button type="button" class="btn btn-warning">Register</button>
                 </a>
 
