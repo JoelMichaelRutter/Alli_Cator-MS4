@@ -64,3 +64,12 @@ def edit_complaint(request, log_number):
         'complaint': complaint,
     }
     return render(request, 'edit_complaint.html', context)
+
+
+def delete_complaint(request, log_number):
+    complaint = get_object_or_404(Complaint, log_number=log_number)
+    complaint.delete()
+    context = {
+        'complaint'
+    }
+    return redirect('home')

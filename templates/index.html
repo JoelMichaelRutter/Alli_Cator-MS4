@@ -24,7 +24,7 @@
                             data-bs-target="#collapse{{complaint.log_number }}" aria-expanded="true"
                             aria-controls="collapseOne">
                             <div class="complaint-list-info-container d-sm-block d-md-inline-flex">
-                                <div class="complaint-list-info">{{ complaint.log_number }}</div>
+                                <div class="complaint-list-info" id="complaintLogNumber">{{ complaint.log_number }}</div>
                                 <div class="complaint-list-info">{{ complaint.customer_surname }}</div>
                                 <div class="complaint-list-info">{{ complaint.date_logged|date:'d/m/Y' }}</div>
                                 <div class="complaint-list-info">{{ complaint.complaint_category}}</div>
@@ -46,7 +46,7 @@
                             </a>
                             <!-- DELETE COMPLAINT BUTTON - THIS TRIGGERS MODAL TO ENSURE THAT COMPLAINTS ARE NOT DELETED UNINTENIONALLY -->
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#deleteComplaintModal">
+                                data-bs-target="#deleteComplaintModal" id="triggerDeleteModal">
                                 Delete Complaint
                             </button>
                         </div>
@@ -101,7 +101,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h5>Are you sure you would like to do this?</h5>
+                    <h5>Are you sure you would like to delete complaint: <span id="complaintLogNumberModal"></span></h5>
                     <p>You should only delete a complaint if:</p>
                     <ul>
                         <li>You have been in contact with the customer and provided a fair outcome.</li>
@@ -112,9 +112,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <form>
+                    <a href="" id="confirmDeleteButton">
                         <button type="button" class="btn btn-primary">Delete Complaint</button>
-                    </form>
+                    </a>
+
                 </div>
             </div>
         </div>
