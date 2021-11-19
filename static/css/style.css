@@ -5,9 +5,11 @@
 
 
 
-
-
 /* GENERAL STYLINGS & HELPER CLASSES */
+
+body {
+    background-color: whitesmoke;
+}
 
 .bg-dark {
     background-color: #759252!important;

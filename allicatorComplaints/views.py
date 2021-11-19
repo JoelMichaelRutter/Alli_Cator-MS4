@@ -6,13 +6,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from .models import Complaint
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
 
-class ViewComplaintList(generic.ListView):
+class ViewComplaintList(LoginRequiredMixin, generic.ListView):
     model = Complaint
-    complaint_list = Complaint.objects.filter().order_by('date_logged')
+    def get_queryset(self):
+        return Complaint.objects.filter(case_owner=self.request.user).order_by('date_logged')
     template_name = 'index.html'
     paginate_by = 10
 
@@ -69,7 +71,7 @@ def edit_complaint(request, log_number):
 def delete_complaint(request, log_number):
     complaint = get_object_or_404(Complaint, log_number=log_number)
     complaint.delete()
-    context = {
-        'complaint'
-    }
+    # context = {
+    #     'complaint'
+    # }
     return redirect('home')
