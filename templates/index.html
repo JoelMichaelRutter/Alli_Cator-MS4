@@ -3,7 +3,7 @@
 {% block content %}
 <!-- ADD COMPLAINT BUTTON & COMPLAINT LIST CONTENT -->
 {% if user.is_authenticated %}
-<div class="container">
+<div class="container-lg">
     <!-- BUTTON ROW -->
     <div class="row">
         <div class="col-sm-12 mt-4 d-flex justify-content-center">
@@ -16,113 +16,148 @@
     <!-- LIST ROW -->
     <div class="row">
         <div class="col-sm-12 mt-4">
-                {% for complaint in complaint_list %}
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse{{complaint.log_number }}" aria-expanded="true"
-                                aria-controls="collapseOne">
-                                <div class="complaint-list-info-container d-sm-block d-md-inline-flex">
-                                    <div class="complaint-list-info" id="complaintLogNumber">{{ complaint.log_number }}
-                                    </div>
-                                    <div class="complaint-list-info">{{ complaint.customer_surname }}</div>
-                                    <div class="complaint-list-info">{{ complaint.date_logged|date:'d/m/Y' }}</div>
-                                    <div class="complaint-list-info">{{ complaint.complaint_category}}</div>
-                                    <div class="complaint-list-info">{{ complaint.case_owner }}</div>
-                                </div>
-                            </button>
-                        </h2>
-                        <div id="collapse{{complaint.log_number}}" class="accordion-collapse collapse"
-                            aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <div>{{ complaint.welcome_email }}</div>
-                                <div>{{ complaint.customer_contacted }}</div>
-                                <div>{{ complaint.holding_correspondence }}</div>
-                                <div>{{ complaint.outstanding_actions }}</div>
-                                <div>{{ complaint.latest_update }}</div>
-                                <!-- EDIT COMPLAINT BUTTON -->
-                                <a href="{% url 'edit-complaint' complaint.log_number %}">
-                                    <button type="button" class="btn btn-primary">Edit Complaint</button>
-                                </a>
-                                <!-- DELETE COMPLAINT BUTTON - THIS TRIGGERS MODAL TO ENSURE THAT COMPLAINTS ARE NOT DELETED UNINTENIONALLY -->
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#deleteComplaintModal" id="triggerDeleteModal">
-                                    Delete Complaint
-                                </button>
-                            </div>
-                        </div>
-                        {% endfor %}
+            <div class="larger-screen-accordion-header-container d-none d-sm-none d-md-inline-flex justify-content-around mb-1 w-100">
+
+                <div class="accordion-header-item roboto-font">
+                    <p>Log Number:</p>
+                </div>
+                <div class="accordion-header-item roboto-font">
+                    <p>Customer Surname:</p>
+                </div>
+                <div class="accordion-header-item roboto-font">
+                    <p>Date Logged:</p>
+                </div>
+                <div class="accordion-header-item roboto-font">
+                    <p>Complaint Category:</p>
+                </div>
+                <div class="accordion-header-item roboto-font">
+                    <p>Case Owner:</p>
                 </div>
             </div>
-            {% if is_paginated %}
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    {% if page_obj.has_previous %}
-                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-                    {% endif %}
-                    {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
-                    {% endif %}
-                </ul>
-            </nav>
-            {% endif %}
-        </div>
-    </div>
-    {% else %}
-    <div class="container">
-        <!-- USER NOT AUTHENTICATED BOX & OPTIONS -->
-        <div class="row">
-            <div class="col-sm-10 offset-sm-1 col-md-4 offset-md-4">
-                <div class="custom-container">
-                    <h3>Welcome to Alli_cator!</h3>
-                    <p>Your friendly neighbourhood complaints management tool.</p>
-                    <p>It doesn't look like we're acquainted at the moment, please choose one of the options below.</p>
-                    <!-- SIGN IN BUTTON -->
-                    <div class="justify-content-center">
-                        <a href="{% url 'account_login' %}">
-                            <button type="button" class="btn btn-primary">Sign In</button>
+            {% for complaint in complaint_list %}
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse{{complaint.log_number }}" aria-expanded="true"
+                            aria-controls="collapseOne">
+                            <div class="complaint-list-info-container d-md-inline-flex justify-content-around w-100"">
+                                    <div class=" d-sm-block mb-2">
+                                <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Log
+                                    Number:</span> <span id="complaintLogNumber">{{ complaint.log_number }}</span>
+                            </div>
+                            <div class="d-sm-block mb-2">
+                                <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Cust
+                                    Surname:</span> {{ complaint.customer_surname }}
+                            </div>
+                            <div class="d-sm-block mb-2">
+                                <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Date
+                                    Logged:</span> {{ complaint.date_logged|date:'d/m/Y' }}
+                            </div>
+                            <div class="d-sm-block mb-2">
+                                <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Complaint
+                                    Cat:</span> {{ complaint.complaint_category}}
+                            </div>
+                            <div class="d-sm-block mb-2">
+                                <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Case
+                                    Owner:</span> {{ complaint.case_owner }}
+                            </div>
+                </div>
+                </button>
+                </h2>
+                <div id="collapse{{complaint.log_number}}" class="accordion-collapse collapse"
+                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div>{{ complaint.welcome_email }}</div>
+                        <div>{{ complaint.customer_contacted }}</div>
+                        <div>{{ complaint.holding_correspondence }}</div>
+                        <div>{{ complaint.outstanding_actions }}</div>
+                        <div>{{ complaint.latest_update }}</div>
+                        <!-- EDIT COMPLAINT BUTTON -->
+                        <a href="{% url 'edit-complaint' complaint.log_number %}">
+                            <button type="button" class="btn btn-primary">Edit Complaint</button>
                         </a>
-                        <!-- REGISTER BUTTON -->
-                        <a href="{% url 'account_signup' %}">
-                            <button type="button" class="btn btn-warning">Register</button>
-                        </a>
+                        <!-- DELETE COMPLAINT BUTTON - THIS TRIGGERS MODAL TO ENSURE THAT COMPLAINTS ARE NOT DELETED UNINTENIONALLY -->
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#deleteComplaint{{ complaint.log_number }}" id="triggerDeleteModal">
+                            Delete Complaint
+                        </button>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-    {% endif %}
-    <!-- MODAL FOR DELETING COMPLAINTS. -->
-    <div class="modal fade" id="deleteComplaintModal" tabindex="-1" aria-labelledby="deleteComplaint"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img class="modal-logo" src="{% static 'images/allicator-icon.png' %}"
-                        alt="The Alli_cator logo - Icon made by Freepik from www.flaticon.com">
-                    <h5 class="modal-title" id="deleteComplaint">Feeding your complaint to the Alli_cator?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h5>Are you sure you would like to delete complaint: <span id="complaintLogNumberModal"></span></h5>
-                    <p>You should only delete a complaint if:</p>
-                    <ul>
-                        <li>You have been in contact with the customer and provided a fair outcome.</li>
-                        <li>You have attempted to contact the customer via all available channels and they have not
-                            responded.</li>
-                    </ul>
-                    <p>Please choose one of the options below.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a href="" id="confirmDeleteButton">
-                        <button type="button" class="btn btn-primary">Delete Complaint</button>
-                    </a>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
 
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+</div>
+{% else %}
+<div class="container">
+    <!-- USER NOT AUTHENTICATED BOX & OPTIONS -->
+    <div class="row">
+        <div class="col-sm-10 offset-sm-1 col-md-4 offset-md-4">
+            <div class="custom-container">
+                <h3>Welcome to Alli_cator!</h3>
+                <p>Your friendly neighbourhood complaints management tool.</p>
+                <p>It doesn't look like we're acquainted at the moment, please choose one of the options below.</p>
+                <!-- SIGN IN BUTTON -->
+                <div class="justify-content-center">
+                    <a href="{% url 'account_login' %}">
+                        <button type="button" class="btn btn-primary">Sign In</button>
+                    </a>
+                    <!-- REGISTER BUTTON -->
+                    <a href="{% url 'account_signup' %}">
+                        <button type="button" class="btn btn-warning">Register</button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endif %}
+<!-- MODAL FOR DELETING COMPLAINTS. -->
+{% for complaint in complaint_list %}
+<div class="modal fade" id="deleteComplaint{{ complaint.log_number }}" tabindex="-1" aria-labelledby="deleteComplaint"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img class="modal-logo" src="{% static 'images/allicator-icon.png' %}"
+                    alt="The Alli_cator logo - Icon made by Freepik from www.flaticon.com">
+                <h5 class="modal-title" id="deleteComplaint">Feeding your complaint to the Alli_cator?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure you would like to delete complaint: {{ complaint.log_number }}</h5>
+                <p>You should only delete a complaint if:</p>
+                <ul>
+                    <li>You have been in contact with the customer and provided a fair outcome.</li>
+                    <li>You have attempted to contact the customer via all available channels and they have not
+                        responded.</li>
+                </ul>
+                <p>Please choose one of the options below.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="/delete-complaint/{{ complaint.log_number }}" id="confirmDeleteButton">
+                    <button type="button" class="btn btn-primary">Delete Complaint</button>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

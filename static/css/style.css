@@ -18,6 +18,7 @@
 
 body {
     background-color: whitesmoke;
+    height: 100%;
 }
 
 .bg-dark {
@@ -48,22 +49,106 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+/* MOBILE STYLINGS ---------------------------------------------------------------------------------- */
 
-/* This will need to be applied for mobiles - will also need to have some sort of label that disappears on tablet view and a table with the headings appears at top of accordion */
-/* .accordion-button {
-    display: block;
+.mobile-complaint-header-label {
+    font-weight: 700;
+}
+
+
+.larger-screen-accordion-header-container {
+    padding-left: 20px;
+    padding-right: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @media only screen and (max-width:576px) {
+    
+    .larger-screen-accordion-header-container {
+        display: none;
+    }
+    
+    .complaint-list-info-container {
+        display: block;
+    }
+
+    .complaint-list-info {
+        margin-bottom: 15px;
+    }
+
+    .mobile-complaint-header-label {
+        display: inline-block;
+        font-weight: 700;
+    }
+}
+
+
+@media only screen and (min-width:576px) and (max-width: 768px) {
+    
+    .larger-screen-accordion-header-container {
+        display: none;
+    }
+    
+    .complaint-list-info-container, {
+        display: inline-flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .mobile-complaint-header-label {
+        display: none;
+    }
+
 } */
 
-.complaint-list-info-container {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .complaint-list-info-container, .larger-screen-accordion-header-container {
     display: inline-flex;
     justify-content: space-around;
     width: 100%;
+} */
+
+.accordion-header-item {
+    font-weight: 600;
 }
 
-.complaint-list-info {
+/* .accordion-header-item > p {
+    max-width: 90%;
+} */
+
+/* .complaint-list-info .accordion-header-item {
     width: 16%;
-}
+} */
 
+.accordion-button:focus {
+    border-color: none;
+    box-shadow: 0 0 0 0.25rem rgba(117, 146, 82, 0.4);
+}
 
 
 
@@ -78,7 +163,7 @@ input[type=number] {
 
 
 footer {
-   position:absolute;
+   position: relative;
    bottom:0;
    width:100%;
    height:60px;   /* Height of the footer */
@@ -92,4 +177,13 @@ footer {
     background-color: lightgrey;
     padding: 15px;
     border-radius: 8px;
+}
+
+
+
+
+
+.accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: rgba(117, 146, 82, 0.3);
 }
