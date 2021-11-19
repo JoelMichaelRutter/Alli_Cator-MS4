@@ -13,6 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ViewComplaintList(LoginRequiredMixin, generic.ListView):
     model = Complaint
+
     def get_queryset(self):
         return Complaint.objects.filter(case_owner=self.request.user).order_by('date_logged')
     template_name = 'index.html'

@@ -4,7 +4,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap');
 
 
+.logo-text {
+    margin-left: 0.5rem;
+    font-size: 130%;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
 
+.navbar-brand > .logo {
+    line-height: 70px;
+}
 /* GENERAL STYLINGS & HELPER CLASSES */
 
 body {

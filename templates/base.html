@@ -31,7 +31,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}"><img class="logo"
                         src="{% static 'images/allicator-icon.png' %}"
-                        alt="The Alli_cator logo - Icon made by Freepik from www.flaticon.com"> Alli_cator</a>
+                        alt="The Alli_cator logo - Icon made by Freepik from www.flaticon.com"> <span class="logo-text roboto-font">Alli_cator</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -40,20 +40,20 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         {% if user.is_authenticated %}
-                            <li class="nav-item">
+                            <li class="nav-item roboto-font">
                                 <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item roboto-font">
                                 <a class="nav-link" href="{% url 'add-complaint' %}">Add a complaint</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item roboto-font">
                                 <a class="nav-link" href="{% url 'account_logout' %}">Sign out</a>
                             </li>
                         {% else %}
-                            <li class="nav-item">
+                            <li class="nav-item roboto-font">
                                 <a class="nav-link" href="{% url 'account_login' %}">Sign in</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item roboto-font">
                                 <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
                             </li>
                         {% endif %}
