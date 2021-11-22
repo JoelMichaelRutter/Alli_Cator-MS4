@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-12 mt-4 d-flex justify-content-center">
             <a href="{% url 'add-complaint' %}">
-                <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-plus-circle"></i> Add
+                <button type="button" class="btn btn-primary btn-lg add-btn-custom roboto-font"><i class="fas fa-plus-circle"></i> Add
                     Complaint</button>
             </a>
         </div>
@@ -121,11 +121,11 @@
                             <div class="col-sm-12 col-lg-2">
                                 <!-- EDIT COMPLAINT BUTTON -->
                                 <a href="{% url 'edit-complaint' complaint.log_number %}">
-                                    <button type="button" class="btn btn-primary mt-5">Edit Complaint</button>
+                                    <button type="button" class="btn btn-primary edit-btn-custom roboto-font"><i class="fas fa-edit"></i> Edit Complaint</button>
                                 </a>
                                 <!-- DELETE COMPLAINT BUTTON - THIS TRIGGERS MODAL TO ENSURE THAT COMPLAINTS ARE NOT DELETED UNINTENIONALLY -->
-                                <button type="button" class="btn btn-warning mt-2" data-bs-toggle="modal"
-                                    data-bs-target="#deleteComplaint{{ complaint.log_number }}" id="triggerDeleteModal">
+                                <button type="button" class="btn btn-warning delete-btn-custom roboto-font" data-bs-toggle="modal"
+                                    data-bs-target="#deleteComplaint{{ complaint.log_number }}" id="triggerDeleteModal"><i class="far fa-trash-alt"></i> 
                                     Delete Complaint
                                 </button>
                             </div>
