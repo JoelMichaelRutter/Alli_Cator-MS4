@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2 mt-4 form-div">
             <form method="POST" action="/add-complaint">
-                <h3 class="form-heading">Add a complaint</h3>
+                <h3 class="form-heading roboto-font">Add a complaint</h3>
                 {% csrf_token %}
                 <!-- LOG NUMBER INPUT ----------------------------------------------------------------------------------->
                 <div class="form-floating mb-3">
@@ -108,9 +108,10 @@
                     </div>
                 </div>
                 <div class="form-floating mb-3 d-flex justify-content-around">
-                    <button type="reset" class="btn btn-warning btn-lg"><i class="fas fa-undo-alt"></i></i> Reset
-                        Form</button>
-                    <button type="submit" class="btn btn-primary btn-lg"><i class="far fa-save"></i> Save
+                    <button type="reset" class="btn btn-warning btn-lg reset-btn-custom roboto-font"><i class="fas fa-undo-alt"></i></i> Reset
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-lg submit-btn-custom roboto-font"><i
+                            class="far fa-save"></i> Save
                         Complaint</button>
                 </div>
             </form>

@@ -140,6 +140,34 @@ a {
     height: 100px;
 }
 
+
+
+
+/* ADD_COMPLAINT.HTML STYLINGS ----------------------------------------------------------------------- */
+
+.reset-btn-custom {
+    background-color: #2D7968;
+    border-color: #2D7968;
+    color: #fff;
+}
+
+.reset-btn-custom:hover {
+    color: #000;
+    background-color: #D28697;
+    border-color: #D28697;
+}
+
+.submit-btn-custom {
+    background-color: #759252;
+    border-color: #759252;
+    color: #fff;
+}
+
+.submit-btn-custom:hover {
+    background-color: #8A6DAD;
+    border-color: #8A6DAD;
+    color: #fff;
+}
 /* MOBILE STYLINGS ---------------------------------------------------------------------------------- */
 
 .mobile-complaint-header-label {
