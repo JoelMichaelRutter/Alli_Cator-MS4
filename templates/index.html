@@ -74,55 +74,55 @@
                                 <div class="col-sm-12 col-md-6 col-lg-5">
                                     <h5 class="roboto-font">Complaint Status Breakdown</h5>
                                     {% if complaint.welcome_email %}
-                                    <div>
-                                        <p>Welcome Email - Sent <i class="fas fa-check-circle complaint-status-icon"></i>
-                                        </p>
-                                    </div>
+                                        <div>
+                                            <p>Welcome Email - Sent <i class="fas fa-check-circle complaint-status-icon"></i>
+                                            </p>
+                                        </div>
                                     {% else %}
-                                    <div>
-                                        <p>Welcome Email - Not sent <i
-                                                class="fas fa-exclamation-circle complaint-status-icon"></i></p>
-                                    </div>
+                                        <div>
+                                            <p>Welcome Email - Not sent <i
+                                                    class="fas fa-exclamation-circle complaint-status-icon"></i></p>
+                                        </div>
                                     {% endif %}
                                     {% if complaint.customer_contacted %}
-                                    <div>
-                                        <p>Customer has been contacted <i class="fas fa-comments complaint-status-icon"></i>
-                                        </p>
-                                    </div>
+                                        <div>
+                                            <p>Customer has been contacted <i class="fas fa-comments complaint-status-icon"></i>
+                                            </p>
+                                        </div>
                                     {% else %}
-                                    <div>
-                                        <p>No contact established with the customer <i
-                                                class="fas fa-comment-slash complaint-status-icon"></i></i>
-                                        </p>
-                                    </div>
+                                        <div>
+                                            <p>No contact established with the customer <i
+                                                    class="fas fa-comment-slash complaint-status-icon"></i></i>
+                                            </p>
+                                        </div>
                                     {% endif %}
                                     {% if complaint.holding_correspondence %}
-                                    <div>
-                                        <p>Holding comms have been sent <i
-                                                class="fas fa-hourglass-half complaint-status-icon"></i></p>
-                                    </div>
+                                        <div>
+                                            <p>Holding comms have been sent <i
+                                                    class="fas fa-hourglass-half complaint-status-icon"></i></p>
+                                        </div>
                                     {% else %}
-                                    <div>
-                                        <p>Holding comms not sent/not required <i
-                                                class="fas fa-play-circle complaint-status-icon"></i>
-                                        </p>
-                                    </div>
+                                        <div>
+                                            <p>Holding comms not sent/not required <i
+                                                    class="fas fa-play-circle complaint-status-icon"></i>
+                                            </p>
+                                        </div>
                                     {% endif %}
                                     {% if complaint.outstanding_actions %}
-                                    <div>
-                                        <p>Outstanding actions (read latest update) <i
-                                                class="fas fa-exclamation-circle complaint-status-icon"></i></p>
-                                    </div>
+                                        <div>
+                                            <p>Outstanding actions (read latest update) <i
+                                                    class="fas fa-exclamation-circle complaint-status-icon"></i></p>
+                                        </div>
                                     {% else %}
-                                    <div>
-                                        <p>There are no present outstanding actions <i
-                                                class="fas fa-check-circle complaint-status-icon"></i></p>
-                                    </div>
+                                        <div>
+                                            <p>There are no present outstanding actions <i
+                                                    class="fas fa-check-circle complaint-status-icon"></i></p>
+                                        </div>
                                     {% endif %}
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-5">
                                     <h5 class="roboto-font">Latest Update:</h5>
-                                    <div><textarea name="" id="expand-accordion-text-area"
+                                    <div><textarea class="form-control" id="expand-accordion-text-area"
                                             readonly>{{ complaint.latest_update }}</textarea></div>
                                 </div>
                                 <div class="col-sm-12 col-lg-2 accordion-function-button-container">

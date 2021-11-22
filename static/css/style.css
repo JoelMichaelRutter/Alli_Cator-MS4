@@ -15,6 +15,16 @@ body {
     font-family: 'Roboto Mono', monospace;
 }
 
+.roboto-font-bold {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+}
+
+.roboto-font-bolder {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+}
+
 
 .form-div {
     background-color: lightgray;
