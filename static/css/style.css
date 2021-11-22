@@ -77,6 +77,21 @@ a {
     border-color: #2D7968;
 }
 
+.add-btn-custom:hover {
+    background-color: #E8BD6E;
+    border-color: #E8BD6E;
+    color: #000;
+}
+
+.complaint-status-icon {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.accordion-function-button-container {
+    height: 50%;
+}
+
 .edit-btn-custom {
     background-color: #E8BD6E;
     border-color: #E8BD6E;
@@ -86,14 +101,37 @@ a {
     margin-top: 10px;
 }
 
+.edit-btn-custom:hover {
+    color: #fff;
+    background-color: #1D696B;
+    border-color: #1D696B;
+}
+
 .delete-btn-custom {
     background-color: #eb3939;
     border-color: #eb3939;
     color: white;
-    /* width: 50px; */
     font-size: 0.9rem;
     font-weight: 600;
     margin-top: 10px;
+}
+
+.delete-btn-custom:hover {
+    color: #fff;
+    background-color: #43493A;
+    border-color: #43493A;
+}
+
+.cancel-btn-custom {
+    margin-top: 10px;
+    background-color: #2D7968;
+    border-color: #2D7968;
+}
+
+.cancel-btn-custom:hover {
+    color: #000;
+    background-color: #E8BD6E;
+    border-color: #E8BD6E;
 }
 
 
