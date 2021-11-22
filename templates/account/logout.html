@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
       <div class="custom-container">
-        <h1>See ya later Alli_cator!</h1>
+        <h1 class="roboto-font-bold">See ya later Alli_cator!</h1>
 
         <p>{% trans 'Are you sure you want to sign out?' %}</p>
 
@@ -18,7 +18,7 @@
           {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
           {% endif %}
-          <button class="btn btn-warning" type="submit">{% trans 'Sign Out' %}</button>
+          <button class="btn btn-warning submit-btn-custom roboto-font" type="submit">{% trans 'Sign Out' %}</button>
         </form>
       </div>
     </div>

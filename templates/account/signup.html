@@ -17,7 +17,6 @@
 
         <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
           {% csrf_token %}
-          <!-- {{ form.as_p }} -->
           <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
             <div class="form-floating mb-3">
               <input class="form-control" type="text" name="username" autocomplete="username" minlength="1"
