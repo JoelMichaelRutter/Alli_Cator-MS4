@@ -24,7 +24,7 @@ class Complaint(models.Model):
     customer_contacted = models.BooleanField(null=False, blank=False)
     holding_correspondence = models.BooleanField(null=False, blank=False)
     outstanding_actions = models.BooleanField(null=False, blank=False)
-    latest_update = models.TextField(max_length=250, unique=True, null=False, blank=False)
+    latest_update = models.TextField(max_length=250, unique=False, null=False, blank=False)
 
     class Meta:
         ordering = ['date_logged']

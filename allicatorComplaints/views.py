@@ -6,12 +6,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from .models import Complaint
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
 
-class ViewComplaintList(LoginRequiredMixin, generic.ListView):
+class ViewComplaintList(generic.ListView):
     model = Complaint
 
     def get_queryset(self):
