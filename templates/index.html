@@ -2,9 +2,10 @@
 {% load static %}
 {% block content %}
 <!-- ADD COMPLAINT BUTTON & COMPLAINT LIST CONTENT -->
+<!-- CHECK IF USER IS AUTHENTICATED IF AUTHENTICATED, DISPLAY USER AUTHENTICATED CONTENT -->
 {% if user.is_authenticated %}
 <div class="container-lg">
-    <!-- BUTTON ROW -->
+    <!-- ADD COMPLAINT BUTTON ROW -->
     <div class="row">
         <div class="col-sm-12 mt-4 d-flex justify-content-center">
             <a href="{% url 'add-complaint' %}">
@@ -14,6 +15,7 @@
             </a>
         </div>
     </div>
+    <!-- CHECKS IF THERE ARE COMPLAINTS IN THE DATABASE FOR THE USER AND DISPLAYS THEM -->
     {% if complaint_list|length %}
         <div class="row">
             <div class="col-sm-12 mt-4">
@@ -44,7 +46,7 @@
                                 data-bs-target="#collapse{{complaint.log_number }}" aria-expanded="true"
                                 aria-controls="collapseOne">
                                 <div class="complaint-list-info-container d-md-inline-flex justify-content-around w-100"">
-                                        <div class=" d-sm-block mb-2">
+                                                <div class=" d-sm-block mb-2">
                                     <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Log
                                         Number:</span> <span id="complaintLogNumber">{{ complaint.log_number }}</span>
                                 </div>
@@ -74,50 +76,50 @@
                                 <div class="col-sm-12 col-md-6 col-lg-5">
                                     <h5 class="roboto-font">Complaint Status Breakdown</h5>
                                     {% if complaint.welcome_email %}
-                                        <div>
-                                            <p>Welcome Email - Sent <i class="fas fa-check-circle complaint-status-icon"></i>
-                                            </p>
-                                        </div>
+                                    <div>
+                                        <p>Welcome Email - Sent <i class="fas fa-check-circle complaint-status-icon"></i>
+                                        </p>
+                                    </div>
                                     {% else %}
-                                        <div>
-                                            <p>Welcome Email - Not sent <i
-                                                    class="fas fa-exclamation-circle complaint-status-icon"></i></p>
-                                        </div>
+                                    <div>
+                                        <p>Welcome Email - Not sent <i
+                                                class="fas fa-exclamation-circle complaint-status-icon"></i></p>
+                                    </div>
                                     {% endif %}
                                     {% if complaint.customer_contacted %}
-                                        <div>
-                                            <p>Customer has been contacted <i class="fas fa-comments complaint-status-icon"></i>
-                                            </p>
-                                        </div>
+                                    <div>
+                                        <p>Customer has been contacted <i class="fas fa-comments complaint-status-icon"></i>
+                                        </p>
+                                    </div>
                                     {% else %}
-                                        <div>
-                                            <p>No contact established with the customer <i
-                                                    class="fas fa-comment-slash complaint-status-icon"></i></i>
-                                            </p>
-                                        </div>
+                                    <div>
+                                        <p>No contact established with the customer <i
+                                                class="fas fa-comment-slash complaint-status-icon"></i></i>
+                                        </p>
+                                    </div>
                                     {% endif %}
                                     {% if complaint.holding_correspondence %}
-                                        <div>
-                                            <p>Holding comms have been sent <i
-                                                    class="fas fa-hourglass-half complaint-status-icon"></i></p>
-                                        </div>
+                                    <div>
+                                        <p>Holding comms have been sent <i
+                                                class="fas fa-hourglass-half complaint-status-icon"></i></p>
+                                    </div>
                                     {% else %}
-                                        <div>
-                                            <p>Holding comms not sent/not required <i
-                                                    class="fas fa-play-circle complaint-status-icon"></i>
-                                            </p>
-                                        </div>
+                                    <div>
+                                        <p>Holding comms not sent/not required <i
+                                                class="fas fa-play-circle complaint-status-icon"></i>
+                                        </p>
+                                    </div>
                                     {% endif %}
                                     {% if complaint.outstanding_actions %}
-                                        <div>
-                                            <p>Outstanding actions (read latest update) <i
-                                                    class="fas fa-exclamation-circle complaint-status-icon"></i></p>
-                                        </div>
+                                    <div>
+                                        <p>Outstanding actions (read latest update) <i
+                                                class="fas fa-exclamation-circle complaint-status-icon"></i></p>
+                                    </div>
                                     {% else %}
-                                        <div>
-                                            <p>There are no present outstanding actions <i
-                                                    class="fas fa-check-circle complaint-status-icon"></i></p>
-                                        </div>
+                                    <div>
+                                        <p>There are no present outstanding actions <i
+                                                class="fas fa-check-circle complaint-status-icon"></i></p>
+                                    </div>
                                     {% endif %}
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-5">
@@ -145,20 +147,25 @@
                 </div>
             </div>
         </div>
+    <!-- CHECKS IF THE STRUCTURE SHOULD BE PAGINATED BASE ON VIEW AND PAGINATES IF THERE ARE MORE THAN TEN ENTRIES ONTO SEPERATE PAGES -->
         {% if is_paginated %}
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-3">
+                    {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}"><button
+                                class="btn btn-primary add-btn-custom roboto-font"><i class="fas fa-arrow-circle-left"></i>
+                                Prev</button> </a></li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}"><button
+                                class="btn btn-primary btn-large add-btn-custom roboto-font-bold">Next <i
+                                    class="fas fa-arrow-circle-right"></i></button> </a></li>
 
-                {% endif %}
-            </ul>
-        </nav>
-        {% endif %}
-
+                    {% endif %}
+                </ul>
+            </nav>
+    {% endif %}
+    <!-- ELSE STATEMENT TO COMPLAINT LIST CHECK WHICH DISPLAYS CONTENT IF THE USER HAS NO COMPLAINTS -->
     {% else %}
     <div class="text-center text-muted roboto-font mt-5">
         <h3>You have no complaints allocated to you. You can add a complaint with the "Add Complaint" button above.</h3>
@@ -166,62 +173,65 @@
     {% endif %}
     <!-- LIST ROW -->
 
-</div>
-{% else %}
-<div class="container">
-    <!-- USER NOT AUTHENTICATED BOX & OPTIONS -->
-    <div class="row">
-        <div class="col-sm-10 offset-sm-1 col-md-4 offset-md-4">
-            <div class="custom-container">
-                <h3>Welcome to Alli_cator!</h3>
-                <p>Your friendly complaints management tool.</p>
-                <p>It doesn't look like we're acquainted at the moment, please choose one of the options below.</p>
-                <!-- SIGN IN BUTTON -->
-                <div class="justify-content-center">
-                    <a href="{% url 'account_login' %}">
-                        <button type="button" class="btn btn-primary">Sign In</button>
-                    </a>
-                    <!-- REGISTER BUTTON -->
-                    <a href="{% url 'account_signup' %}">
-                        <button type="button" class="btn btn-warning">Register</button>
-                    </a>
+    <!-- </div> -->
+    <!-- USER AUTHENTICATED ELSE CHECK - IF USER NOT AUTHENTICATED SHOWS BOX WITH OPTIONS AND GUIDANCE & REDIRECTS TO SIGN IN AND SIGNUP TEMPLATES -->
+    {% else %}
+        <div class="container">
+            <!-- USER NOT AUTHENTICATED BOX & OPTIONS -->
+            <div class="row">
+                <div class="col-sm-10 offset-sm-1 col-md-4 offset-md-4">
+                    <div class="custom-container">
+                        <h3>Welcome to Alli_cator!</h3>
+                        <p>Your friendly complaints management tool.</p>
+                        <p>It doesn't look like we're acquainted at the moment, please choose one of the options below.</p>
+                        <!-- SIGN IN BUTTON -->
+                        <div class="justify-content-center">
+                            <a href="{% url 'account_login' %}">
+                                <button type="button" class="btn btn-primary">Sign In</button>
+                            </a>
+                            <!-- REGISTER BUTTON -->
+                            <a href="{% url 'account_signup' %}">
+                                <button type="button" class="btn btn-warning">Register</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-{% endif %}
-<!-- MODAL FOR DELETING COMPLAINTS. -->
-{% for complaint in complaint_list %}
-<div class="modal fade" id="deleteComplaint{{ complaint.log_number }}" tabindex="-1" aria-labelledby="deleteComplaint"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title roboto-font" id="deleteComplaint">Feeding your complaint to the Alli_cator?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5>Are you sure you would like to delete complaint: {{ complaint.log_number }}</h5>
-                <p>You should only delete a complaint if:</p>
-                <ul>
-                    <li>You have been in contact with the customer and provided a fair outcome.</li>
-                    <li>You have attempted to contact the customer via all available channels and they have not
-                        responded.</li>
-                </ul>
-                <p>Please choose one of the options below.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary cancel-btn-custom roboto-font" data-bs-dismiss="modal"><i
-                        class="fas fa-undo-alt"></i> Cancel</button>
-                <a href="/delete-complaint/{{ complaint.log_number }}" id="confirmDeleteButton">
-                    <button type="button" class="btn btn-primary delete-btn-custom roboto-font"><i
-                            class="far fa-trash-alt"></i> Delete Complaint</button>
-                </a>
+    {% endif %}
+    <!-- MODAL FOR DELETING COMPLAINTS ARE RENDERED ALONG WITH EACH ITEM IN THE COMPLAINT LIST THEY ARE APPROPRIATLEY 
+        ID'd WITH THE LOG NUMBER WHICH IS THE PRIMARY KEY IN THE DATABASE THIS ALLOWS EACH COMPLAINT ITEM TO OPEN THE CORRECT MODAL -->
+    {% for complaint in complaint_list %}
+        <div class="modal fade" id="deleteComplaint{{ complaint.log_number }}" tabindex="-1"
+            aria-labelledby="deleteComplaint" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title roboto-font" id="deleteComplaint">Feeding your complaint to the Alli_cator?
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>Are you sure you would like to delete complaint: {{ complaint.log_number }}</h5>
+                        <p>You should only delete a complaint if:</p>
+                        <ul>
+                            <li>You have been in contact with the customer and provided a fair outcome.</li>
+                            <li>You have attempted to contact the customer via all available channels and they have not
+                                responded.</li>
+                        </ul>
+                        <p>Please choose one of the options below.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary cancel-btn-custom roboto-font"
+                            data-bs-dismiss="modal"><i class="fas fa-undo-alt"></i> Cancel</button>
+                        <a href="/delete-complaint/{{ complaint.log_number }}" id="confirmDeleteButton">
+                            <button type="button" class="btn btn-primary delete-btn-custom roboto-font"><i
+                                    class="far fa-trash-alt"></i> Delete Complaint</button>
+                        </a>
 
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-{% endfor %}
-{% endblock %}
+    {% endfor %}
+    {% endblock %}

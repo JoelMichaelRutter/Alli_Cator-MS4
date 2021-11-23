@@ -25,11 +25,16 @@ body {
     font-weight: 700;
 }
 
-
 .form-div {
     background-color: lightgray;
     padding: 10px;
     border-radius: 5px;
+}
+
+.btn-primary:active {
+    color: #fff;
+    background-color: #2D7968;
+    border-color: #2D7968;
 }
 
 /* NUMBER SPINNER DISABLE - https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
@@ -92,6 +97,11 @@ a {
     border-color: #E8BD6E;
     color: #000;
 }
+
+/* .accordion-item {
+    border-right: 1px solid rgba(0,0,0,.125);
+} */
+
 
 .complaint-status-icon {
     font-size: 1.5rem;
