@@ -17,23 +17,24 @@
     {% if complaint_list|length %}
         <div class="row">
             <div class="col-sm-12 mt-4">
-                <div class="larger-screen-accordion-header-container d-none d-sm-none d-md-inline-flex justify-content-around mb-1 w-100">
-                    <div class="accordion-header-item roboto-font">
-                        <p>Log Number:</p>
+                    <!-- grid tryout -->
+                    <div class="accordion-header-grid-parent">
+                        <div class="accordion-header-item roboto-font">
+                            <p>Log Number:</p>
+                        </div>
+                        <div class="accordion-header-item roboto-font">
+                            <p>Customer Surname:</p>
+                        </div>
+                        <div class="accordion-header-item roboto-font">
+                            <p>Date Logged:</p>
+                        </div>
+                        <div class="accordion-header-item roboto-font">
+                            <p>Complaint Category:</p>
+                        </div>
+                        <div class="accordion-header-item roboto-font">
+                            <p>Case Owner:</p>
+                        </div>
                     </div>
-                    <div class="accordion-header-item roboto-font">
-                        <p>Customer Surname:</p>
-                    </div>
-                    <div class="accordion-header-item roboto-font">
-                        <p>Date Logged:</p>
-                    </div>
-                    <div class="accordion-header-item roboto-font">
-                        <p>Complaint Category:</p>
-                    </div>
-                    <div class="accordion-header-item roboto-font">
-                        <p>Case Owner:</p>
-                    </div>
-                </div>
                 {% for complaint in complaint_list %}
                 <div class="accordion" id="complaintAccordion">
                     <div class="accordion-item">
@@ -41,13 +42,14 @@
                             <div class="accordion-button" data-bs-toggle="collapse" role="button"
                                 data-bs-target="#collapse{{ complaint.log_number }}" aria-expanded="true"
                                 aria-controls="collapse{{complaint.log_number}}">
-                                <div class="complaint-list-info-container d-md-inline-flex justify-content-around w-100">
+                                <!-- GRID TRYOUT -->
+                                <div class="accordion-grid-parent">
                                     <div class=" d-sm-block mb-2">
-                                    <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Log
-                                        Number:</span> <span id="complaintLogNumber">{{ complaint.log_number }}</span>
-                                </div>
-                                <div class="d-sm-block mb-2">
-                                    <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Cust
+                                        <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Log Number:</span>
+                                        <span id="complaintLogNumber">{{ complaint.log_number }}</span> 
+                                    </div>
+                                    <div class="d-sm-block mb-2">
+                                        <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Cust
                                         Surname:</span> {{ complaint.customer_surname }}
                                 </div>
                                 <div class="d-sm-block mb-2">
@@ -174,7 +176,7 @@
     <!-- LIST ROW -->
 
     <!-- </div> -->
-    <!-- USER AUTHENTICATED ELSE CHECK - IF USER NOT AUTHENTICATED SHOWS BOX WITH OPTIONS AND GUIDANCE & REDIRECTS TO SIGN IN AND SIGNUP TEMPLATES -->
+    <!-- USER AUTHENTICATED ELSE CHECK - IF USER NOT AUTHENTICATED SHOWS BOX WITH OPTIONS AND GUIDANCE & REDIRECTS TO SIGN IN AND SIGNUP TEMPLATES "DELETE THIS NOW AND HAVE THE SIGN IN PAGE AS THE NEW HOME PAGE"-->
     {% else %}
         <!-- <div class="container">
             USER NOT AUTHENTICATED BOX & OPTIONS
@@ -202,7 +204,7 @@
     <!-- MODAL FOR DELETING COMPLAINTS ARE RENDERED ALONG WITH EACH ITEM IN THE COMPLAINT LIST THEY ARE APPROPRIATLEY 
         ID'd WITH THE LOG NUMBER WHICH IS THE PRIMARY KEY IN THE DATABASE THIS ALLOWS EACH COMPLAINT ITEM TO OPEN THE CORRECT MODAL -->
     {% for complaint in complaint_list %}
-        <div class="modal fade" id="deleteComplaint{{ complaint.log_number }}" tabindex="-1"
+        <div class="modal fade" id="deleteComplaint{{complaint.log_number}}" tabindex="-1"
             aria-labelledby="deleteComplaint" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -224,7 +226,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary cancel-btn-custom roboto-font"
                             data-bs-dismiss="modal"><i class="fas fa-undo-alt"></i> Cancel</button>
-                        <a href="/delete-complaint/{{ complaint.log_number }}" id="confirmDeleteButton" class="btn btn-primary delete-btn-custom roboto-font">
+                        <a href="/delete-complaint/{{complaint.log_number}}" id="confirmDeleteButton" class="btn btn-primary delete-btn-custom roboto-font">
                             <i class="far fa-trash-alt"></i> Delete Complaint
                         </a>
 

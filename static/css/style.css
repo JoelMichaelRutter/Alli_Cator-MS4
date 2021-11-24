@@ -87,6 +87,42 @@ a {
 
 /* INDEX.HTML STYLINGS ------------------------------------------------------------------------------ */
 
+.accordion-header-grid-parent {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 99%;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    }
+
+.accordion-grid-parent {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100%;
+    text-align: center;
+    }
+
+@media only screen and (max-width: 768px) {
+    .accordion-header-grid-parent {
+        display: none;
+    }
+
+    .accordion-grid-parent {
+        display: block;
+        text-align: left;
+    }
+   
+  }
+
+
+
 .add-btn-custom {
     background-color: #2D7968;
     border-color: #2D7968;
@@ -100,10 +136,12 @@ a {
 
 .accordion-item {
     cursor: pointer;
+    border: 1px solid rgba(148, 148, 148, 0.50)
 }
 
 .accordion-body {
     cursor: auto;
+    border: 1px solid rgba(148, 148, 148, 0.75)
 }
 
 
@@ -311,3 +349,19 @@ footer {
     color: #000;
     background-color: rgba(117, 146, 82, 0.3);
 }
+
+
+
+
+
+.table-header {
+    width: 95%;
+    padding-left: 20px;
+}
+
+.accordion-button-table {
+    width: 100%;
+}
+
+
+
