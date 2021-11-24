@@ -86,43 +86,6 @@ a {
 }
 
 /* INDEX.HTML STYLINGS ------------------------------------------------------------------------------ */
-
-.accordion-header-grid-parent {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    width: 99%;
-    padding-left: 20px;
-    padding-right: 20px;
-    text-align: center;
-    }
-
-.accordion-grid-parent {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    width: 100%;
-    text-align: center;
-    }
-
-@media only screen and (max-width: 768px) {
-    .accordion-header-grid-parent {
-        display: none;
-    }
-
-    .accordion-grid-parent {
-        display: block;
-        text-align: left;
-    }
-   
-  }
-
-
-
 .add-btn-custom {
     background-color: #2D7968;
     border-color: #2D7968;
@@ -134,16 +97,76 @@ a {
     color: #000;
 }
 
+
+.accordion-header-grid-parent {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 99%;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.accordion-grid-parent {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+/* MEDIA QUERY FOR TABLETS AND SMALL SCREEN WHICH CHANGES THE GRID DISPLAY TO BLOCK AND REMOVES THE ACCORDION HEADERS DISPLAYED ON LARGER SCREENS */
+@media only screen and (max-width: 768px) {
+    .accordion-header-grid-parent {
+        display: none;
+    }
+
+    .accordion-grid-parent {
+        display: block;
+        text-align: left;
+    }
+   
+}
+
+.accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: #fff;
+}
+
+.accordion-button:active {
+    border-color: none;
+    box-shadow: 0 0 0 0.25rem rgba(117, 146, 82, 0.4);
+    background-color: rgba(117, 146, 82, 0.3);
+}
+
+.modal-title {
+    color: whitesmoke;
+}
+
+.modal-header {
+    background-color: #759252;
+}
+
 .accordion-item {
     cursor: pointer;
     border: 1px solid rgba(148, 148, 148, 0.50)
 }
 
-.accordion-body {
-    cursor: auto;
-    border: 1px solid rgba(148, 148, 148, 0.75)
+.accordion-button:hover {
+    background-color: rgba(117, 146, 82, 0.3);
 }
 
+.accordion-body {
+    cursor: auto;
+    border: 1px solid rgba(148, 148, 148, 0.75);
+    background-color: #fff;
+}
 
 .complaint-status-icon {
     font-size: 1.5rem;
@@ -203,8 +226,6 @@ a {
 }
 
 
-
-
 /* ADD_COMPLAINT.HTML STYLINGS ----------------------------------------------------------------------- */
 
 .reset-btn-custom {
@@ -230,109 +251,8 @@ a {
     border-color: #8A6DAD;
     color: #fff;
 }
-/* MOBILE STYLINGS ---------------------------------------------------------------------------------- */
 
-.mobile-complaint-header-label {
-    font-weight: 700;
-}
-
-
-.larger-screen-accordion-header-container {
-    padding-left: 20px;
-    padding-right: 40px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* @media only screen and (max-width:576px) {
-    
-    .larger-screen-accordion-header-container {
-        display: none;
-    }
-    
-    .complaint-list-info-container {
-        display: block;
-    }
-
-    .complaint-list-info {
-        margin-bottom: 15px;
-    }
-
-    .mobile-complaint-header-label {
-        display: inline-block;
-        font-weight: 700;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .complaint-list-info-container, .larger-screen-accordion-header-container {
-    display: inline-flex;
-    justify-content: space-around;
-    width: 100%;
-} */
-
-.accordion-header-item {
-    font-weight: 600;
-}
-
-/* .accordion-header-item > p {
-    max-width: 90%;
-} */
-
-/* .complaint-list-info .accordion-header-item {
-    width: 16%;
-} */
-
-.accordion-button:focus {
-    border-color: none;
-    box-shadow: 0 0 0 0.25rem rgba(117, 146, 82, 0.4);
-}
-
-
-
-.modal-title {
-    color: whitesmoke;
-}
-
-
-.modal-header {
-    background-color: #759252;
-}
-
-
-footer {
-   position: absolute;
-   bottom:0;
-   width:100%;
-   height:60px;   /* Height of the footer */
-   background:#6cf;
-}
-
-/* ACCOUNTS FORMS CUSTOMER STYLINGS */
+/* ACCOUNTS FORMS CUSTOM STYLINGS */
 
 .custom-container {
     margin-top: 4rem;
@@ -345,23 +265,7 @@ footer {
 
 
 
-.accordion-button:not(.collapsed) {
-    color: #000;
-    background-color: rgba(117, 146, 82, 0.3);
-}
 
-
-
-
-
-.table-header {
-    width: 95%;
-    padding-left: 20px;
-}
-
-.accordion-button-table {
-    width: 100%;
-}
 
 
 

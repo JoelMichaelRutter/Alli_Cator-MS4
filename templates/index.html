@@ -17,7 +17,7 @@
     {% if complaint_list|length %}
         <div class="row">
             <div class="col-sm-12 mt-4">
-                    <!-- grid tryout -->
+                    <!-- HEADER GRID - THIS IS DISPLAYED ON LARGER SCREEN SIZES AND SET TO DISPLAY NONE ON TABLETS AND MOBILE -->
                     <div class="accordion-header-grid-parent">
                         <div class="accordion-header-item roboto-font">
                             <p>Log Number:</p>
@@ -42,7 +42,7 @@
                             <div class="accordion-button" data-bs-toggle="collapse" role="button"
                                 data-bs-target="#collapse{{ complaint.log_number }}" aria-expanded="true"
                                 aria-controls="collapse{{complaint.log_number}}">
-                                <!-- GRID TRYOUT -->
+                                <!-- THE INFORMATION WITHIN IS SET TO GRID DISPLAY ON LARGER SCREEN SIZES -->
                                 <div class="accordion-grid-parent">
                                     <div class=" d-sm-block mb-2">
                                         <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Log Number:</span>
