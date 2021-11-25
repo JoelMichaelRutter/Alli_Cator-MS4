@@ -5,8 +5,9 @@
 """
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
-from .models import Complaint
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from .models import Complaint
 
 
 # Create your views here.
@@ -45,6 +46,7 @@ def add_complaint(request):
             outstanding_actions=outstanding_actions,
             latest_update=latest_update,
         )
+        messages.success(request, "Triumphant fanfare! - Complaint successfully added to allocation.")
         return redirect('home')
     return render(request, 'add_complaint.html')
 
@@ -63,6 +65,7 @@ def edit_complaint(request, log_number):
         complaint.outstanding_actions = 'outstanding_actions' in request.POST
         complaint.latest_update = request.POST.get('latest_update')
         complaint.save(update_fields=None)
+        messages.success(request, "Complaint edited successfully.")
         return redirect('home')
     context = {
         'complaint': complaint,
@@ -76,4 +79,5 @@ def delete_complaint(request, log_number):
     # context = {
     #     'complaint'
     # }
+    messages.error(request, "Chomp chomp! - The complaint has been fed to the Alli_cator.")
     return redirect('home')
