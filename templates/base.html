@@ -49,7 +49,7 @@
                             <a class="nav-link" href="{% url 'add-complaint' %}">Add a complaint</a>
                         </li>
                         <li class="nav-item roboto-font">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Sign out</a>
+                            <a class="nav-link" id="sign-out" href="{% url 'account_logout' %}">Sign out</a>
                         </li>
                         <li class="logged-in-as nav-item roboto-font">
                             You are currently logged in as: {{ user.username }}
