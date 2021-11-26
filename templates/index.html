@@ -2,8 +2,6 @@
 {% load static %}
 {% block content %}
 <!-- ADD COMPLAINT BUTTON & COMPLAINT LIST CONTENT -->
-<!-- CHECK IF USER IS AUTHENTICATED IF AUTHENTICATED, DISPLAY USER AUTHENTICATED CONTENT -->
-{% if user.is_authenticated %}
 <div class="container-lg">
     <!-- ADD COMPLAINT BUTTON ROW -->
     <div class="row">
@@ -140,11 +138,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {% endfor %}
-                </div>
             </div>
+            {% endfor %}
         </div>
+    </div>
+</div>
     <!-- CHECKS IF THE STRUCTURE SHOULD BE PAGINATED BASE ON VIEW AND PAGINATES IF THERE ARE MORE THAN TEN ENTRIES ONTO SEPERATE PAGES -->
         {% if is_paginated %}
             <nav aria-label="Page navigation">
@@ -172,34 +170,6 @@
     <div class="text-center text-muted roboto-font mt-5">
         <h3>You have no complaints allocated to you. You can add a complaint with the "Add Complaint" button above.</h3>
     </div>
-    {% endif %}
-    <!-- LIST ROW -->
-
-    <!-- </div> -->
-    <!-- USER AUTHENTICATED ELSE CHECK - IF USER NOT AUTHENTICATED SHOWS BOX WITH OPTIONS AND GUIDANCE & REDIRECTS TO SIGN IN AND SIGNUP TEMPLATES "DELETE THIS NOW AND HAVE THE SIGN IN PAGE AS THE NEW HOME PAGE"-->
-    {% else %}
-        <!-- <div class="container">
-            USER NOT AUTHENTICATED BOX & OPTIONS
-             <div class="row">
-                <div class="col-sm-10 offset-sm-1 col-md-4 offset-md-4">
-                    <div class="custom-container">
-                        <h3>Welcome to Alli_cator!</h3>
-                        <p>Your friendly complaints management tool.</p>
-                        <p>It doesn't look like we're acquainted at the moment, please choose one of the options below.</p>
-                        SIGN IN BUTTON
-                        <div class="justify-content-center">
-                            <a href="{% url 'account_login' %}">
-                                <button type="button" class="btn btn-primary">Sign In</button>
-                            </a>
-                             REGISTER BUTTON
-                            <a href="{% url 'account_signup' %}">
-                                <button type="button" class="btn btn-warning">Register</button>
-                            </a>
-                       </div>
-                    </div>
-                </div>
-            </div> 
-        </div> -->
     {% endif %}
     <!-- MODAL FOR DELETING COMPLAINTS ARE RENDERED ALONG WITH EACH ITEM IN THE COMPLAINT LIST THEY ARE APPROPRIATLEY 
         ID'd WITH THE LOG NUMBER WHICH IS THE PRIMARY KEY IN THE DATABASE THIS ALLOWS EACH COMPLAINT ITEM TO OPEN THE CORRECT MODAL -->

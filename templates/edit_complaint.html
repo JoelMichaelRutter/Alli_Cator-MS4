@@ -4,35 +4,35 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2 mt-4 form-div">
-            <!-- EDIT COMPLAINT FORM --------------------------------------------------------------------------->
+            <!-- EDIT COMPLAINT FORM -->
             <form method="POST" action="{% url 'edit-complaint' complaint.log_number %}">
                 <h3 class="form-heading">Edit a complaint</h3>
                 {% csrf_token %}
-                <!-- LOG NUMBER INPUT -------------------------------------------------------------------------->
+                <!-- LOG NUMBER INPUT -->
                 <div class="form-floating mb-3">
-                    <input class="form-control" id="log_number" name="log_number" type="number"
+                    <input class="form-control" id="log_number" name="log_number" type="text"
                         value="{{ complaint.log_number }}" placeholder="Complaint Log Number"
-                        data-sb-validations="required" maxlength="10" required readonly />
-                    <small id="passwordHelpBlock" class="form-text text-muted">
+                        data-sb-validations="required" maxlength="10" pattern="\d*" required readonly />
+                    <small class="form-text text-muted">
                         The log number should be numbers only and a maximum of 10 characters.
                     </small>
                     <label for="log_number">Complaint Log Number</label>
                     <div class="invalid-feedback" data-sb-feedback="log_number:required">Complaint Log Number is
                         required.</div>
                 </div>
-                <!-- CUSTOMER SURNAME INPUT ------------------------------------------------------------------->
+                <!-- CUSTOMER SURNAME INPUT -->
                 <div class="form-floating mb-3">
                     <input class="form-control" id="customer_surname" name="customer_surname" type="text"
                         placeholder="Customer Surname" data-sb-validations="required" maxlength="40"
                         value="{{ complaint.customer_surname }}" required />
-                    <small id="passwordHelpBlock" class="form-text text-muted">
+                    <small class="form-text text-muted">
                         Maximum of 40 characters.
                     </small>
                     <label for="customer_surname">Customer Surname</label>
                     <div class="invalid-feedback" data-sb-feedback="customer_surname:required">Customer Surname is
                         required.</div>
                 </div>
-                <!-- COMPLAINT CATEGORY INPUT ---------------------------------------------------------------->
+                <!-- COMPLAINT CATEGORY INPUT -->
                 <div class="form-floating mb-3">
                     <input class="form-control" id="complaint_category" name="complaint_category" type="text"
                         placeholder="Complaint Category" data-sb-validations="required" maxlength="100"
@@ -44,24 +44,24 @@
                     <div class="invalid-feedback" data-sb-feedback="complaintCategory:required">Complaint Category is
                         required.</div>
                 </div>
-                <!-- DATE LOGGED INPUT ----------------------------------------------------------------------->
+                <!-- DATE LOGGED INPUT -->
                 <div class="form-floating mb-3">
                     {% load l10n %}
                         <input type="date" class="form-control" id="date_logged" name="date_logged"
                             value="{{ complaint.date_logged|date:'Y-m-d' }}">
                         <label for="date_logged">Date complaint was logged</label>
                 </div>
-                <!-- CASE OWNER INPUT (READ ONLY - LOCKED TO USERNAME OF LOGGED IN USER) --------------------->
+                <!-- CASE OWNER INPUT (READ ONLY - LOCKED TO USERNAME OF LOGGED IN USER) -->
                 <div class="form-floating mb-3">
-                    <input class="form-control" type="text" name="case_owner" value="{{user.username}}"
+                    <input class="form-control" type="text" name="case_owner" id="case_owner" value="{{user.username}}"
                         aria-label="This input is disabled and locked to your user id." readonly>
                     <label for="case_owner">Case Owner</label>
                     <div class="invalid-feedback" data-sb-feedback="case_owner:required">Case Owner is required.</div>
                 </div>
-                <!-- COMPLAINT STATUS SWITCHES --------------------------------------------------------------->
+                <!-- COMPLAINT STATUS SWITCHES -->
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-5">
-                        <!-- WELCOME EMAIL SWITCH ------------------------------------------------------------>
+                        <!-- WELCOME EMAIL SWITCH -->
                         <div class="mb-3">
                             <div class="form-check form-switch">
                                 {% if complaint.welcome_email %}
@@ -74,7 +74,7 @@
                                 <label class="form-check-label" for="welcome_email">Welcome email sent</label>
                             </div>
                         </div>
-                        <!-- CUSTOMER CONTACTED SWITCH ------------------------------------------------------>
+                        <!-- CUSTOMER CONTACTED SWITCH -->
                         <div class="mb-3">
                             <div class="form-check form-switch">
                                 {% if complaint.customer_contacted %}
@@ -87,7 +87,7 @@
                                 <label class="form-check-label" for="customer_contacted">Customer contacted</label>
                             </div>
                         </div>
-                        <!-- HOLDING CORRESPONDENCE SWITCH ---------------------------------------------------->
+                        <!-- HOLDING CORRESPONDENCE SWITCH -->
                         <div class="mb-3">
                             <div class="form-check form-switch">
                                 {% if complaint.holding_correspondence %}
@@ -101,7 +101,7 @@
                                     sent</label>
                             </div>
                         </div>
-                        <!-- OUTSTANDING ACTIONS SWITCH --------------------------------------------------------->
+                        <!-- OUTSTANDING ACTIONS SWITCH -->
                         <div class="mb-3">
                             <div class="form-check form-switch">
                                 {% if complaint.outstanding_actions %}
@@ -115,16 +115,16 @@
                             </div>
                         </div>
                     </div>
-                    <!-- LATEST UPDATE TEXT AREA ------------------------------------------------------------------>
+                    <!-- LATEST UPDATE TEXT AREA -->
                     <div class="col-md-6 col-lg-7">
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" id="latest_update" name="latest_update" type="text"
+                            <textarea class="form-control" id="latest_update" name="latest_update" 
                                 placeholder="Latest Update" style="height: 10rem;" data-sb-validations="required"
                                 maxlength="250" required>{{ complaint.latest_update }}</textarea>
                             <small id="passwordHelpBlock" class="form-text text-muted">
                                 Maximum of 250 characters.
                             </small>
-                            <label for="latestUpdate">Latest Update</label>
+                            <label for="latest_update">Latest Update</label>
                             <div class="invalid-feedback" data-sb-feedback="latest_update:required">Latest Update is
                                 required.
                             </div>
@@ -138,4 +138,5 @@
             </form>
         </div>
     </div>
+</div>
     {% endblock %}
