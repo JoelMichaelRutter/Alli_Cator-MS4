@@ -43,9 +43,7 @@
         </p>
         {% endif %}
 
-        <!-- <form class="login" method="POST" action="{% url 'account_login' %}"> -->
-        <!-- {{ form.as_p }} -->
-        <form class="login" method="POST" action="/accounts/login/">
+        <form class="login" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
           <div class="form-floating mb-3">
             <input class="form-control" type="text" name="login" autocomplete="username" maxlength="150" required=""
