@@ -11,7 +11,8 @@
                 <!-- LOG NUMBER INPUT -->
                 <div class="form-floating mb-3">
                     <input class="form-control" id="log_number" name="log_number" type="text"
-                        placeholder="Complaint Log Number" data-sb-validations="required" maxlength="10"  pattern="\d*" required />
+                        placeholder="Complaint Log Number" data-sb-validations="required" maxlength="10" pattern="\d*"
+                        required />
                     <small class="form-text text-muted">
                         The log number should contain numbers only and a maximum of 10 characters.
                     </small>
@@ -94,7 +95,8 @@
                     <!-- LATEST UPDATE TEXT AREA -->
                     <div class="col-md-6 col-lg-7">
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" id="latest_update" name="latest_update"                                 placeholder="Latest Update" style="height: 10rem;" data-sb-validations="required"
+                            <textarea class="form-control" id="latest_update" name="latest_update"
+                                placeholder="Latest Update" style="height: 10rem;" data-sb-validations="required"
                                 maxlength="250" required></textarea>
                             <small class="form-text text-muted">
                                 Maximum of 250 characters.
@@ -104,7 +106,8 @@
                     </div>
                 </div>
                 <div class="form-floating mb-3 d-flex justify-content-around">
-                    <button type="reset" class="btn btn-warning btn-lg reset-btn-custom roboto-font"><i class="fas fa-undo-alt"></i> Reset
+                    <button type="reset" class="btn btn-warning btn-lg reset-btn-custom roboto-font"><i
+                            class="fas fa-undo-alt"></i> Reset
                     </button>
                     <button type="submit" class="btn btn-primary btn-lg submit-btn-custom roboto-font"><i
                             class="far fa-save"></i> Save
@@ -114,4 +117,4 @@
         </div>
     </div>
 </div>
-    {% endblock %}
+{% endblock %}
