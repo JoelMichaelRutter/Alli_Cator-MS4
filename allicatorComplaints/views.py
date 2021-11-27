@@ -1,7 +1,12 @@
 """
-1 - Importing render shortcut and redirect shortcut
+1 - Importing render shortcut and redirect and get_object_or_404 shortcuts
 2 - Importing generic view template from django views.
-3 -
+3 - Importing LoginRequiredMixin to ensure that all
+users attempting to access the ViewComplaintList view are
+redirected to the sign in page to prevent unauthorised access.
+4 - Importing messages to use in data handling views to provide
+custom messages upon user actions.
+5 - Importing Complaint model for use in data handling views.
 """
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
@@ -9,17 +14,41 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from .models import Complaint
 
-
-# Create your views here.
+"""
+ViewComplaintList
+- This view handles the R of the application's CRUD functionality
+- The below view parses the database for all of the Complaint objects.
+- Inside the view, a custom function filters the entries by the
+logged in user making the request so that the user can only see and
+manage their own entries.
+- The entries are also ordered oldest to newest.
+- If there are more than 10 entries for the user, the page is paginated.
+"""
 
 
 class ViewComplaintList(LoginRequiredMixin, generic.ListView):
     model = Complaint
 
+    # This below function overides the default
+    # get_queryset function of the ListView class
+    # and allows for the custom filter to be applied.
     def get_queryset(self):
-        return Complaint.objects.filter(case_owner=self.request.user).order_by('date_logged')
+        return Complaint.objects.filter(
+            case_owner=self.request.user
+            ).order_by('date_logged')
     template_name = 'index.html'
     paginate_by = 10
+
+
+"""
+add_complaint
+- This view handles the C of the application's CRUD functionality.
+- The request method is checked and if it is "POST",
+the view assigns the data from the fields in the add_complaint.html form
+to variables of the same name.
+- From there, an object within the database is created with the data from
+the form.
+"""
 
 
 def add_complaint(request):
@@ -46,9 +75,36 @@ def add_complaint(request):
             outstanding_actions=outstanding_actions,
             latest_update=latest_update,
         )
-        messages.success(request, "Triumphant fanfare! - Complaint successfully added to allocation.")
+        messages.success(
+            request,
+            "Triumphant fanfare! - Complaint successfully added to allocation."
+            )
         return redirect('home')
     return render(request, 'add_complaint.html')
+
+
+"""
+edit_complaint
+- This view handles the U of the application's CRUD functionality.
+- The request and the log_number of the complaint are passed into the function.
+- A call to the Complaint data model is invoked and the view will return the
+edit_complaint.html template provided a record exists in the db with
+that log_number.
+- There is a form within the edit_complaint template, and the complaint
+that has been found
+is passed into the template via the context variable. From there, the
+current data for the record is added into the form fields via the various value
+html attributes. The user can then change the values via the form.
+- In terms of the boolean fields on the model, there is some template logic
+contained on the page which assesses the value and renders either a checked
+or unchecked Bootstrap switch based on the truthy/falsy value in the db.
+- Once the user submits the form, the record is saved. Inside this database
+action, the update_fields=None parameter is passed in.
+This negates any checking of unchanged database values and the complaint is
+overwritten.
+- A custom message is passed back to the index.html template upon a successful
+submission.
+"""
 
 
 def edit_complaint(request, log_number):
@@ -61,7 +117,9 @@ def edit_complaint(request, log_number):
         complaint.case_owner = request.user
         complaint.welcome_email = 'welcome_email' in request.POST
         complaint.customer_contacted = 'customer_contacted' in request.POST
-        complaint.holding_correspondence = 'holding_correspondence' in request.POST
+        complaint.holding_correspondence = (
+            'holding_correspondence' in request.POST
+            )
         complaint.outstanding_actions = 'outstanding_actions' in request.POST
         complaint.latest_update = request.POST.get('latest_update')
         complaint.save(update_fields=None)
@@ -73,11 +131,22 @@ def edit_complaint(request, log_number):
     return render(request, 'edit_complaint.html', context)
 
 
+"""
+delete_complaint
+- This view handles the D of the application's CRUD functionality.
+- It is similar in function to the edit complaint view.
+- The database is parsed for an entry with a matching log number.
+- From there, that entry is deleted.
+- A custom message is generated before the redirect back to the index.html
+template is invoked using the error message styling.
+"""
+
+
 def delete_complaint(request, log_number):
     complaint = get_object_or_404(Complaint, log_number=log_number)
     complaint.delete()
-    # context = {
-    #     'complaint'
-    # }
-    messages.error(request, "Chomp chomp! - The complaint has been fed to the Alli_cator.")
+    messages.error(
+        request,
+        "Chomp chomp! - The complaint has been fed to the Alli_cator."
+        )
     return redirect('home')
