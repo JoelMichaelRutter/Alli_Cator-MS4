@@ -6,7 +6,7 @@
         <div class="col-sm-12 col-md-8 offset-md-2 mt-4 form-div">
             <!-- EDIT COMPLAINT FORM -->
             <form method="POST" action="{% url 'edit-complaint' complaint.log_number %}">
-                <h3 class="form-heading">Edit a complaint</h3>
+                <h3 class="form-heading roboto-font">Edit a complaint</h3>
                 {% csrf_token %}
                 <!-- LOG NUMBER INPUT -->
                 <div class="form-floating mb-3">
@@ -37,7 +37,7 @@
                     <input class="form-control" id="complaint_category" name="complaint_category" type="text"
                         placeholder="Complaint Category" data-sb-validations="required" maxlength="100"
                         value="{{ complaint.complaint_category }}" />
-                    <small id="passwordHelpBlock" class="form-text text-muted">
+                    <small class="form-text text-muted">
                         Maximum of 100 characters.
                     </small>
                     <label for="complaint_category">Complaint Category</label>
@@ -121,7 +121,7 @@
                             <textarea class="form-control" id="latest_update" name="latest_update" 
                                 placeholder="Latest Update" style="height: 10rem;" data-sb-validations="required"
                                 maxlength="250" required>{{ complaint.latest_update }}</textarea>
-                            <small id="passwordHelpBlock" class="form-text text-muted">
+                            <small class="form-text text-muted">
                                 Maximum of 250 characters.
                             </small>
                             <label for="latest_update">Latest Update</label>
