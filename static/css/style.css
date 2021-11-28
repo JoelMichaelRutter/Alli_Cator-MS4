@@ -229,7 +229,7 @@ a {
 }
 
 
-#expand-accordion-text-area {
+.expand-accordion-text-area {
     width: 95%;
     height: 100px;
 }

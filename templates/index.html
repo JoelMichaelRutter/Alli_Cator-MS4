@@ -34,17 +34,17 @@
                         </div>
                     </div>
                 {% for complaint in complaint_list %}
-                <div class="accordion" id="complaintAccordion">
+                <div class="accordion">
                     <div class="accordion-item">
-                        <div class="accordion-header" id="complaintHeading">
-                            <div class="accordion-button collapsed" data-bs-toggle="collapse" role="button"
+                        <div class="accordion-header">
+                            <div class="accordion-button collapsed" id="complaint-heading{{complaint.log_number}}" data-bs-toggle="collapse" role="button"
                                 data-bs-target="#collapse{{ complaint.log_number }}" aria-expanded="true"
                                 aria-controls="collapse{{complaint.log_number}}">
                                 <!-- THE INFORMATION WITHIN IS SET TO GRID DISPLAY ON LARGER SCREEN SIZES -->
                                 <div class="accordion-grid-parent">
-                                    <div class=" d-sm-block mb-2">
+                                    <div class="d-sm-block mb-2">
                                         <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Log Number:</span>
-                                        <span id="complaintLogNumber">{{ complaint.log_number }}</span> 
+                                        <span>{{ complaint.log_number }}</span> 
                                     </div>
                                     <div class="d-sm-block mb-2">
                                         <span class="mobile-complaint-header-label d-md-none d-lg-none roboto-font">Cust
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div id="collapse{{complaint.log_number}}" class="accordion-collapse collapse"
-                        aria-labelledby="complaintHeading" data-bs-parent="#accordionExample">
+                        aria-labelledby="complaint-heading{{complaint.log_number}}" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-5">
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-5">
                                     <h5 class="roboto-font">Latest Update:</h5>
-                                    <div><textarea class="form-control" id="expand-accordion-text-area"
+                                    <div><textarea class="form-control expand-accordion-text-area"
                                             readonly>{{ complaint.latest_update }}</textarea></div>
                                 </div>
                                 <div class="col-sm-12 col-lg-2 accordion-function-button-container">
@@ -132,7 +132,7 @@
                                     <!-- DELETE COMPLAINT BUTTON - THIS TRIGGERS MODAL TO ENSURE THAT COMPLAINTS ARE NOT DELETED UNINTENIONALLY -->
                                     <button type="button" class="btn btn-warning delete-btn-custom roboto-font"
                                         data-bs-toggle="modal" data-bs-target="#deleteComplaint{{ complaint.log_number }}"
-                                        id="triggerDeleteModal"><i class="far fa-trash-alt"></i>
+                                        id="triggerDeleteModal{{ complaint.log_number }}"><i class="far fa-trash-alt"></i>
                                         Delete Complaint
                                     </button>
                                 </div>
@@ -175,11 +175,11 @@
         ID'd WITH THE LOG NUMBER WHICH IS THE PRIMARY KEY IN THE DATABASE THIS ALLOWS EACH COMPLAINT ITEM TO OPEN THE CORRECT MODAL -->
     {% for complaint in complaint_list %}
         <div class="modal fade" id="deleteComplaint{{complaint.log_number}}" tabindex="-1"
-            aria-labelledby="deleteComplaint" aria-hidden="true">
+            aria-labelledby="deleteComplaint{{ complaint.log_number }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title roboto-font" id="deleteComplaint">Feeding your complaint to the Alli_cator?
+                        <h5 class="modal-title roboto-font">Feeding your complaint to the Alli_cator?
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -196,7 +196,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary cancel-btn-custom roboto-font"
                             data-bs-dismiss="modal"><i class="fas fa-undo-alt"></i> Cancel</button>
-                        <a href="/delete-complaint/{{complaint.log_number}}" id="confirmDeleteButton" class="btn btn-primary delete-btn-custom roboto-font">
+                        <a href="/delete-complaint/{{complaint.log_number}}" class="btn btn-primary delete-btn-custom roboto-font">
                             <i class="far fa-trash-alt"></i> Delete Complaint
                         </a>
 
