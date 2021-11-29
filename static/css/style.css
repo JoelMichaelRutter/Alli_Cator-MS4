@@ -149,7 +149,7 @@ a {
 } 
 
 .accordion-button-clicked {
-    border-color: none;
+    border: none;
     box-shadow: 0 0 0 0.25rem rgba(117, 146, 82, 0.4)!important;
     background-color: rgba(117, 146, 82, 0.3)!important;
 }
