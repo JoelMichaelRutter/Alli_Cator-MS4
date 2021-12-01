@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',
     'allicatorComplaints',
+    'import_export',
 ]
 
 SITE_ID = 1

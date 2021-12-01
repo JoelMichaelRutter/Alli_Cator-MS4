@@ -7,17 +7,19 @@ filtering, display and search functionality in Admin site.
 """
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
+from import_export.admin import ImportExportMixin
 from .models import Complaint
 
 
 @admin.register(Complaint)
-class ComplaintAdmin(SummernoteModelAdmin):
+class ComplaintAdmin(ImportExportMixin, SummernoteModelAdmin):
     list_filter = ('date_logged', 'complaint_category')
     list_display = (
         'log_number',
         'date_logged',
         'customer_surname',
         'complaint_category',
-        'case_owner'
+        'case_owner',
+        'latest_update'
         )
     search_fields = ['log_number', 'customer_surname']
