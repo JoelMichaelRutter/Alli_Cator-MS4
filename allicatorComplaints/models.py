@@ -41,5 +41,8 @@ class Complaint(models.Model):
     class Meta:
         ordering = ['date_logged']
 
-    def __str__(self):
+    # def __str__(self):
+    #     return self.log_number
+
+    def __int__(self):
         return self.log_number
