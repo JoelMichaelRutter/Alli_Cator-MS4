@@ -77,6 +77,4 @@ class TestViews(TestCase):
                 'latest_update': 'Latest Update Text Area'
             })
         self.assertRedirects(response, '/')
-
-    # def test_can_edit_complaint(self):
     # def test_can_delete_complaint(self):
