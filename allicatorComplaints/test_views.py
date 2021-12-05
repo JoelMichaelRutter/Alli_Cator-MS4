@@ -77,4 +77,28 @@ class TestViews(TestCase):
                 'latest_update': 'Latest Update Text Area'
             })
         self.assertRedirects(response, '/')
-    # def test_can_delete_complaint(self):
+
+    def test_can_delete_complaint(self):
+        testuser = User.objects.create(
+            username='testuser',
+            password='pwd',
+            is_active=1,
+            is_staff=1
+        )
+        self.client.force_login(testuser, backend=None)
+        complaint = Complaint.objects.create(
+            log_number='123456',
+            customer_surname='Testing',
+            complaint_category='Testing category',
+            date_logged='2021-12-03',
+            case_owner=testuser,
+            welcome_email=True,
+            customer_contacted=False,
+            holding_correspondence=False,
+            outstanding_actions=False,
+            latest_update='Latest update test',
+            )
+        response = self.client.get(f'/delete-complaint/{complaint.log_number}/')
+        self.assertRedirects(response, '/')
+        existing_complaint = Complaint.objects.filter(log_number=complaint.log_number)
+        self.assertEqual(len(existing_complaint), 0)
