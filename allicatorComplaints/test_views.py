@@ -98,7 +98,11 @@ class TestViews(TestCase):
             outstanding_actions=False,
             latest_update='Latest update test',
             )
-        response = self.client.get(f'/delete-complaint/{complaint.log_number}/')
+        response = self.client.get(
+            f'/delete-complaint/{complaint.log_number}/'
+            )
         self.assertRedirects(response, '/')
-        existing_complaint = Complaint.objects.filter(log_number=complaint.log_number)
+        existing_complaint = Complaint.objects.filter(
+            log_number=complaint.log_number
+            )
         self.assertEqual(len(existing_complaint), 0)

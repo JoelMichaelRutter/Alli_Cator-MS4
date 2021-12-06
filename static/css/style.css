@@ -154,10 +154,6 @@ a {
     background-color: rgba(117, 146, 82, 0.3)!important;
 }
 
-.accordion-button:hover {
-    background-color: rgba(117, 146, 82, 0.3)!important;
-}
-
 .modal-title {
     color: whitesmoke;
 }
@@ -273,9 +269,9 @@ a {
 
 
 
-
-
-
-
-
-
+/* CORRECTIVE MEDIA QUERIES FOLLOWING TESTING */
+@media only screen and (min-width: 1024px) {
+    .accordion-button:hover {
+        background-color: rgba(117, 146, 82, 0.3)!important;
+    }
+}
