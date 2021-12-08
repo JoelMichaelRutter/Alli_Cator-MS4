@@ -48,13 +48,13 @@
                 <div class="form-floating mb-3">
                     {% load l10n %}
                         <input type="date" class="form-control" id="date_logged" name="date_logged"
-                            value="{{ complaint.date_logged|date:'Y-m-d' }}">
+                            value="{{ complaint.date_logged|date:'Y-m-d' }}" required />
                         <label for="date_logged">Date complaint was logged</label>
                 </div>
                 <!-- CASE OWNER INPUT (READ ONLY - LOCKED TO USERNAME OF LOGGED IN USER) -->
                 <div class="form-floating mb-3">
                     <input class="form-control" type="text" name="case_owner" id="case_owner" value="{{user.username}}"
-                        aria-label="This input is disabled and locked to your user id." readonly>
+                        aria-label="This input is disabled and locked to your username." readonly>
                     <label for="case_owner">Case Owner</label>
                     <div class="invalid-feedback" data-sb-feedback="case_owner:required">Case Owner is required.</div>
                 </div>
