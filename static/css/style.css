@@ -273,9 +273,3 @@ a {
         background-color: rgba(117, 146, 82, 0.3)!important;
     }
 }
-
-@media (min-width: 769px) {
-    .d-md-none {
-        display: none!important;
-    }
-}
