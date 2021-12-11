@@ -12,6 +12,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.db import IntegrityError
 from .models import Complaint
 
 """
@@ -52,33 +53,42 @@ the form.
 
 
 def add_complaint(request):
-    if request.method == 'POST':
-        log_number = request.POST.get('log_number')
-        customer_surname = request.POST.get('customer_surname')
-        complaint_category = request.POST.get('complaint_category')
-        date_logged = request.POST.get('date_logged')
-        case_owner = request.user
-        welcome_email = 'welcome_email' in request.POST
-        customer_contacted = 'customer_contacted' in request.POST
-        holding_correspondence = 'holding_correspondence' in request.POST
-        outstanding_actions = 'outstanding_actions' in request.POST
-        latest_update = request.POST.get('latest_update')
-        Complaint.objects.create(
-            log_number=log_number,
-            customer_surname=customer_surname,
-            complaint_category=complaint_category,
-            date_logged=date_logged,
-            case_owner=case_owner,
-            welcome_email=welcome_email,
-            customer_contacted=customer_contacted,
-            holding_correspondence=holding_correspondence,
-            outstanding_actions=outstanding_actions,
-            latest_update=latest_update,
-        )
-        messages.success(
-            request,
-            "Triumphant fanfare! - Complaint successfully added to allocation."
+    try:
+        if request.method == 'POST':
+            log_number = request.POST.get('log_number')
+            customer_surname = request.POST.get('customer_surname')
+            complaint_category = request.POST.get('complaint_category')
+            date_logged = request.POST.get('date_logged')
+            case_owner = request.user
+            welcome_email = 'welcome_email' in request.POST
+            customer_contacted = 'customer_contacted' in request.POST
+            holding_correspondence = 'holding_correspondence' in request.POST
+            outstanding_actions = 'outstanding_actions' in request.POST
+            latest_update = request.POST.get('latest_update')
+            Complaint.objects.create(
+                log_number=log_number,
+                customer_surname=customer_surname,
+                complaint_category=complaint_category,
+                date_logged=date_logged,
+                case_owner=case_owner,
+                welcome_email=welcome_email,
+                customer_contacted=customer_contacted,
+                holding_correspondence=holding_correspondence,
+                outstanding_actions=outstanding_actions,
+                latest_update=latest_update,
             )
+            messages.success(
+                request,
+                """Triumphant fanfare! - Complaint
+                 successfully added to allocation."""
+                )
+            return redirect('home')
+    except IntegrityError:
+        messages.error(
+            request,
+            """:( Looks like the complaint you're
+            trying to add already exists in our records, please try again!"""
+        )
         return redirect('home')
     return render(request, 'add_complaint.html')
 
