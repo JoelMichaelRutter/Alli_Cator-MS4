@@ -273,3 +273,10 @@ a {
         background-color: rgba(117, 146, 82, 0.3)!important;
     }
 }
+/* MEDIA QUERY PUSHING D-MD-NONE UP BY ONE PIXEL TO PREVENT PX OVERLAP AND 
+FIX TABLET BUG WHERE BLOCK MOBILE INFO HEADERS WONT APPEAR */
+@media (min-width: 769px) {
+    .d-md-none {
+        display: none!important;
+    }
+}
