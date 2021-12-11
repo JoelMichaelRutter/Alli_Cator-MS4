@@ -144,6 +144,13 @@ a {
     display: inline-block!important;
 }
 
+/* MEDIA QUERY TO FIX BOOTSTRAP/CUSTOM CSS CLASH FOR MOBILE HEADER */
+@media only screen and (min-width: 769px) {
+    .mobile-complaint-header-label {
+        display: none!important;
+    }
+}
+
 .accordion-button {
     background-color: #fff!important;
     color: #000!important;
