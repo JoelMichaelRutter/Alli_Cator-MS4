@@ -267,11 +267,15 @@ a {
     border-radius: 8px;
 }
 
-
-
-/* CORRECTIVE MEDIA QUERIES FOLLOWING TESTING */
+/* CORRECTIVE MEDIA QUERIES DURING TESTING */
 @media only screen and (min-width: 1024px) {
     .accordion-button:hover {
         background-color: rgba(117, 146, 82, 0.3)!important;
+    }
+}
+
+@media (min-width: 769px) {
+    .d-md-none {
+        display: none!important;
     }
 }
