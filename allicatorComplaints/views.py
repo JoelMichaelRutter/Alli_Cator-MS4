@@ -4,10 +4,11 @@
 3 - Importing LoginRequiredMixin to ensure that all
 users attempting to access the ViewComplaintList view are
 redirected to the sign in page to prevent unauthorised access.
-4 - Importing messages to use in data handling views to provide
+4 - Imporing login required decorator for use on function based views.
+5 - Importing messages to use in data handling views to provide
 custom messages upon user actions.
-5 - Importing integrity error module to use in add_complaint view.
-6 - Importing Complaint model for use in data handling views.
+6 - Importing integrity error module to use in add_complaint view.
+7 - Importing Complaint model for use in data handling views.
 """
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
