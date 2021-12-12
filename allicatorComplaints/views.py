@@ -12,6 +12,7 @@ custom messages upon user actions.
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db import IntegrityError
 from .models import Complaint
@@ -53,6 +54,7 @@ the form.
 """
 
 
+@login_required
 def add_complaint(request):
     try:
         if request.method == 'POST':
@@ -118,6 +120,7 @@ submission.
 """
 
 
+@login_required
 def edit_complaint(request, log_number):
     complaint = get_object_or_404(Complaint, log_number=log_number)
     if request.method == 'POST':
