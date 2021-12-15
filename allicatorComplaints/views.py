@@ -47,6 +47,8 @@ class ViewComplaintList(LoginRequiredMixin, generic.ListView):
 """
 add_complaint
 - This view handles the C of the application's CRUD functionality.
+- The view is decorated by the @login_required decorator to ensure
+that no unauthorised users can access it.
 - The request method is checked and if it is "POST",
 the view assigns the data from the fields in the add_complaint.html form
 to variables of the same name.
@@ -100,6 +102,8 @@ def add_complaint(request):
 """
 edit_complaint
 - This view handles the U of the application's CRUD functionality.
+- The view is decorated by the @login_required decorator to ensure
+that no unauthorised users can access it.
 - The request and the log_number of the complaint are passed into the function.
 - A call to the Complaint data model is invoked and the view will return the
 edit_complaint.html template provided a record exists in the db with
@@ -149,6 +153,8 @@ def edit_complaint(request, log_number):
 """
 delete_complaint
 - This view handles the D of the application's CRUD functionality.
+- The view is decorated by the @login_required decorator to ensure
+that no unauthorised users can access it.
 - It is similar in function to the edit complaint view.
 - The database is parsed for an entry with a matching log number.
 - From there, that entry is deleted.
@@ -156,7 +162,7 @@ delete_complaint
 template is invoked using the error message styling.
 """
 
-
+@login_required
 def delete_complaint(request, log_number):
     complaint = get_object_or_404(Complaint, log_number=log_number)
     complaint.delete()
