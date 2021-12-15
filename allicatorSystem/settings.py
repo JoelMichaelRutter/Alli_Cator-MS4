@@ -104,6 +104,9 @@ WSGI_APPLICATION = 'allicatorSystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# This database variable is for the local database
+# uncomment if you require access to this database
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
