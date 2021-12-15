@@ -36,6 +36,8 @@ class ViewComplaintList(LoginRequiredMixin, generic.ListView):
     # This below function overides the default
     # get_queryset function of the ListView class
     # and allows for the custom filter to be applied.
+    # Thanks to Eska on this Stack Overflow thread
+    # https://bit.ly/3ytJsGx for the code here.
     def get_queryset(self):
         return Complaint.objects.filter(
             case_owner=self.request.user
@@ -161,6 +163,7 @@ that no unauthorised users can access it.
 - A custom message is generated before the redirect back to the index.html
 template is invoked using the error message styling.
 """
+
 
 @login_required
 def delete_complaint(request, log_number):
