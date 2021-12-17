@@ -18,13 +18,32 @@ from django_summernote.admin import SummernoteModelAdmin
 from import_export.admin import ExportMixin
 from import_export import fields, resources
 from import_export.widgets import ForeignKeyWidget
-from django.contrib.auth.models import User
-from .models import Complaint
+# from django.contrib.auth.models import User
+from .models import Complaint, User
 
 
 class ComplaintExportResource(resources.ModelResource):
-
+    """
+    COMPLAINTEXPORTRESOURCE
+    - This class controls the behaviour of export functionality.
+    - Meta defines which model the ExportMixin will apply to
+    in the admin class as well as the fields that should be
+    pulled from the table into the exported data.
+    - Exclude excludes columns from the exported data.
+    - As the id column is excluded, the export_order of the
+    columns has been explicitly declared.
+    - Finally, in the case owner variable, I use the foreign key
+    widget to replace the user id with the users username.
+    """
     class Meta:
+        """
+        - Meta defines which model the ExportMixin will apply to
+        in the admin class as well as the fields that should be
+        pulled from the table into the exported data.
+        - Exclude excludes columns from the exported data.
+        - As the id column is excluded, the export_order of the
+        columns has been explicitly declared.
+        """
         model = Complaint
         fields = (
             'id',
@@ -66,6 +85,18 @@ class ComplaintExportResource(resources.ModelResource):
 
 @admin.register(Complaint)
 class ComplaintAdmin(ExportMixin, SummernoteModelAdmin):
+    """
+    ComplaintAdmin
+    - First, I register the Model the admin class is for (line 86).
+    - This class takes the ExportMixin as it's first parameter.
+    This enables the export behaviour.
+    - The second parameter is the SummernoteModelAdmin which enables
+    the list_filter, list_display and search_field functionality.
+    - Finally, we set the resource class at the bottom to an
+    instance of the ComplaintExportResource class so that
+    the specified order columns and data can be properly exported
+    from the Complaint table.
+    """
     list_filter = ('date_logged', 'complaint_category')
     list_display = (
         'log_number',

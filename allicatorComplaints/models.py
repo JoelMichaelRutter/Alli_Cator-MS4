@@ -6,13 +6,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-"""
-- Below is the data model for each complaint that gets logged
-  into the system.
-"""
-
-
 class Complaint(models.Model):
+    """
+    - Below is the data model for each complaint that gets logged
+      into the system.
+    """
     log_number = models.CharField(
       max_length=10,
       unique=True,
@@ -39,10 +37,10 @@ class Complaint(models.Model):
     )
 
     class Meta:
+        """
+        - Orders complaints in the table oldest to newest.
+        """
         ordering = ['date_logged']
 
-    # def __str__(self):
-    #     return self.log_number
-
-    def __int__(self):
-        return self.log_number
+    def __str__(self):
+        return str(self.log_number)

@@ -18,19 +18,18 @@ from django.contrib import messages
 from django.db import IntegrityError
 from .models import Complaint
 
-"""
-ViewComplaintList
-- This view handles the R of the application's CRUD functionality
-- The below view parses the database for all of the Complaint objects.
-- Inside the view, a custom function filters the entries by the
-logged in user making the request so that the user can only see and
-manage their own entries.
-- The entries are also ordered oldest to newest.
-- If there are more than 10 entries for the user, the page is paginated.
-"""
-
 
 class ViewComplaintList(LoginRequiredMixin, generic.ListView):
+    """
+    ViewComplaintList
+    - This view handles the R of the application's CRUD functionality
+    - The below view parses the database for all of the Complaint objects.
+    - Inside the view, a custom function filters the entries by the
+    logged in user making the request so that the user can only see and
+    manage their own entries.
+    - The entries are also ordered oldest to newest.
+    - If there are more than 10 entries for the user, the page is paginated.
+    """
     model = Complaint
 
     # This below function overides the default
@@ -46,21 +45,25 @@ class ViewComplaintList(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
 
-"""
-add_complaint
-- This view handles the C of the application's CRUD functionality.
-- The view is decorated by the @login_required decorator to ensure
-that no unauthorised users can access it.
-- The request method is checked and if it is "POST",
-the view assigns the data from the fields in the add_complaint.html form
-to variables of the same name.
-- From there, an object within the database is created with the data from
-the form.
-"""
-
-
 @login_required
 def add_complaint(request):
+    """
+    add_complaint
+    - This view handles the C of the application's CRUD functionality.
+    - The view is decorated by the @login_required decorator to ensure
+    that no unauthorised users can access it.
+    TRY:
+    - The request method is checked and if it is "POST",
+    the view assigns the data from the fields in the add_complaint.html form
+    to variables of the same name.
+    - From there, an object within the database is created with the data from
+    the form.
+    EXCEPT:
+    - The only way in which the submission can fail due to data entry from user
+    is if they enter an existing log number. This raises and integrity error.
+    Integrity error is caught by except statement and messages is printed
+    to user who is redirected back to the home page.
+    """
     try:
         if request.method == 'POST':
             log_number = request.POST.get('log_number')
@@ -101,34 +104,33 @@ def add_complaint(request):
     return render(request, 'add_complaint.html')
 
 
-"""
-edit_complaint
-- This view handles the U of the application's CRUD functionality.
-- The view is decorated by the @login_required decorator to ensure
-that no unauthorised users can access it.
-- The request and the log_number of the complaint are passed into the function.
-- A call to the Complaint data model is invoked and the view will return the
-edit_complaint.html template provided a record exists in the db with
-that log_number.
-- There is a form within the edit_complaint template, and the complaint
-that has been found
-is passed into the template via the context variable. From there, the
-current data for the record is added into the form fields via the various value
-html attributes. The user can then change the values via the form.
-- In terms of the boolean fields on the model, there is some template logic
-contained on the page which assesses the value and renders either a checked
-or unchecked Bootstrap switch based on the truthy/falsy value in the db.
-- Once the user submits the form, the record is saved. Inside this database
-action, the update_fields=None parameter is passed in.
-This negates any checking of unchanged database values and the complaint is
-overwritten.
-- A custom message is passed back to the index.html template upon a successful
-submission.
-"""
-
-
 @login_required
 def edit_complaint(request, log_number):
+    """
+    edit_complaint
+    - This view handles the U of the application's CRUD functionality.
+    - The view is decorated by the @login_required decorator to ensure
+    that no unauthorised users can access it.
+    - The request and the log_number of the complaint are passed into the
+    function.
+    - A call to the Complaint data model is invoked and the view will return
+    the edit_complaint.html template provided a record exists in the db with
+    that log_number.
+    - There is a form within the edit_complaint template, and the complaint
+    that has been found
+    is passed into the template via the context variable. From there, the
+    current data for the record is added into the form fields via the various
+    value html attributes. The user can then change the values via the form.
+    - In terms of the boolean fields on the model, there is some template logic
+    contained on the page which assesses the value and renders either a checked
+    or unchecked Bootstrap switch based on the truthy/falsy value in the db.
+    - Once the user submits the form, the record is saved. Inside this database
+    action, the update_fields=None parameter is passed in.
+    This negates any checking of unchanged database values and the complaint is
+    overwritten.
+    - A custom message is passed back to the index.html template upon a
+    successful submission.
+    """
     complaint = get_object_or_404(Complaint, log_number=log_number)
     if request.method == 'POST':
         complaint.log_number = request.POST.get('log_number')
@@ -152,21 +154,20 @@ def edit_complaint(request, log_number):
     return render(request, 'edit_complaint.html', context)
 
 
-"""
-delete_complaint
-- This view handles the D of the application's CRUD functionality.
-- The view is decorated by the @login_required decorator to ensure
-that no unauthorised users can access it.
-- It is similar in function to the edit complaint view.
-- The database is parsed for an entry with a matching log number.
-- From there, that entry is deleted.
-- A custom message is generated before the redirect back to the index.html
-template is invoked using the error message styling.
-"""
-
-
 @login_required
 def delete_complaint(request, log_number):
+    """
+    DELETE COMPLAINT VIEW
+    - It is protected by the login_required decorator to ensure
+    no unauthenticated users can user the URL path to delete
+    an entry.
+    - Like the edit_complaint view, the  Complaint table is parsed
+    via the log number column. The page will 404 if a complaint isnt
+    found.
+    - From there, the complaint is deleted and a custom message is
+    flashed to the user.
+    - The user is then redirected home.
+    """
     complaint = get_object_or_404(Complaint, log_number=log_number)
     complaint.delete()
     messages.error(
