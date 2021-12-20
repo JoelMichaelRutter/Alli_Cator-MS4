@@ -73,4 +73,3 @@ All of my templates, once rendered in Heroku, have been validated through the [W
 My custom CSS file has been validated using the [W3 Jigsaw Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) via direct input. No errors or warnings present. 
 ## **JavaScript**
 My custom JavaScript code has been validated through [JSHint](https://jshint.com/). No errors present.
-

@@ -402,3 +402,6 @@ Below I will list the variety of technology I used during the development proces
 
 # **Application Testing**  
 Please click [here](testing.md) to see a full breakdown of all testing completed on the application.
+
+# **Preparing the workspace and deploying the application**
+Please click [here](prep-and-deployment.md) to see a full explanation of the steps I took to prepare the workspace for development, how to perform an initial deployment, the integration and implementation of additional libraries as well as the final deployment of the application.
