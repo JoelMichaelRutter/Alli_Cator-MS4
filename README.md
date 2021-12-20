@@ -355,3 +355,47 @@ I’ve installed the Django Summernote library to use in the admin.py file. Ther
 The final feature I would like to talk about is additional and is not covered in any user story. It’s something I decided to add following the development of the functionality which finalised the user stories. Following a discussion at work about the application now that all other functionality was in place, a senior stakeholder asked me if it was possible to export data from the application so that it could be shared or manipulated by those without access to the admin site. This prompted me to go searching for a solution to this problem, as any good business application should have the ability to make it’s data accessible to whomever needs it. 
 
 As a result, I installed the Django import-export library. A full explanation on the installation and implementation of this library can be found within the [deployment document](preperation-and-deployment.md).
+# **Technologies Used**
+Below I will list the variety of technology I used during the development process.
+### **Operating Systems**
+
+* **[Windows 10](https://www.microsoft.com/en-gb/windows/get-windows-10)**
+
+### **GitPod** - was used as an Integrated Development Environment.  
+
+### **Languages**
+
+* **[Python](https://en.wikipedia.org/wiki/Python_(programming_language))**
+* **[HTML5](https://en.wikipedia.org/wiki/HTML5)**
+* **[CSS3](https://en.wikipedia.org/wiki/CSS)**
+	* **[CSS Grid]( https://en.wikipedia.org/wiki/CSS_grid_layout)** – I used this for my data parent containers on larger screens to ensure that the layout of the application remained tidy and responsive even with variable amounts of data within the containers.
+    * **[CSS Grid Generator]( https://cssgrid-generator.netlify.app/)** - To make things easier for myself, I used a CSS grid generator to create my grid containers.
+* **[JavaScript](https://en.wikipedia.org/wiki/JavaScript)** - ES6 Syntax. I used some vanilla JavaScript to set a timeout function on my django messages.
+
+### **Frameworks, Libraries & Dependencies**
+#### **Backend**
+* **[Django]( https://www.djangoproject.com/)** - This is the high-level python framework I used as the foundation of the project. It has a lot of useful pre-installed packages and shortcuts and is intended to be used for the rapid development of applications.
+    * **[Django Summernote](https://github.com/summernote/django-summernote)** - This is a Django admin library that I installed to use in my admin site to implement search, list view and filter functionality.
+    * **[Django import-export](https://django-import-export.readthedocs.io/en/latest/)** - This is another Django library that is used in the admin site which enables admins to export the data in the database.
+    * **[Django all-auth](https://django-allauth.readthedocs.io/en/latest/overview.html)** - This is another Django library that handles the authentication and creation of users.
+* **[Green Unicorn](https://gunicorn.org/)** - This is a Web Services Gateway Interface HTTP server which is commonly used to run Python web applications. 
+* **[Dj-database-url](https://pypi.org/project/dj-database-url/)** - This Django library allows us to connect to an external database which in our case will be hosted on Heroku.
+* **[psycopg2](https://pypi.org/project/psycopg2/)** - This package is one of the most popular database adapters for the python programming language which allows us to utilise a PostgreSQL database.
+* **[Dj3-cloudinary-storage](https://pypi.org/project/dj3-cloudinary-storage)** - This Django package allows Django to integrate with the Cloudinary cloud hosting service and allows for the storage and serving of static and media files once the project is deployed.
+* **[PostgreSQL](https://www.postgresql.org/)** - The relational database management system used within this application.
+#### Front end 
+* **[Bootstrap]( https://getbootstrap.com/)** - a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS- and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.
+* **[jQuery]( https://jquery.com/)** - This is arguably one of the most popular JavaScript libraries in use right now. I used it to toggle a class on my accordion headers when they are clicked and unclicked to signal to the user which complaints had been expanded. I used a CDN to implement the jQuery library in the base.html template.
+* **[Google Fonts](https://fonts.google.com/)** - for typography
+* **[Font Awesome](https://fontawesome.com/)** - for iconography  
+
+### **Version Control**
+* **[Git](https://en.wikipedia.org/wiki/Git)** - was used as a version control system.
+* **[GitHub](https://en.wikipedia.org/wiki/GitHub)** - was used as a code repository.
+### **Deployment**
+* **[Heroku](https://en.wikipedia.org/wiki/Heroku)** – A cloud hosting service where the finalised application is deployed.
+
+### Other
+* **[Microsoft Visio](https://en.wikipedia.org/wiki/Microsoft_Visio)** - Was used to create the front end wireframes.  
+* **[Microsoft Powerpoint](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)** - Used to plan the application features, the data model, write user stories, prepare images for use in this document, prepare the colour palette, write questions for my mentor and just general planning. 
+* **[Microsoft Word](https://en.wikipedia.org/wiki/Microsoft_Word)** - I used this word processor to write the README files.
