@@ -1,11 +1,30 @@
+"""
+1 - Importing test case from django
+2 - Importing user model to set up test user
+3 - Importing complaint model to use in tests
+"""
 from django.test import TestCase
 from django.contrib.auth.models import User
 from .models import Complaint
 
 
 class TestViews(TestCase):
+    """
+    Creating class to run tests for views.
+    """
 
     def test_get_view_complaint_list_page(self):
+        """
+        TEST GET VIEW COMPLAINT LIST PAGE
+        This first test tests the behaviour of the
+        ViewComplaintList class based view.
+        As protected by authentication, create a testuser
+        then use the force_login method to login test user.
+        From there, the tests are run.
+        Firstly we check that the HTTP code is 200 (successful)
+        Finally, we check that the view is serving the correct
+        template.
+        """
         testuser = User.objects.create(
             username='testuser',
             password='pwd',
@@ -18,6 +37,17 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_get_add_complaint_page(self):
+        """
+        TEST GET ADD COMPLAINT PAGE
+        This test tests the behaviour of the
+        add_complaint function based view.
+        As protected by authentication, create a testuser
+        then use the force_login method to login test user.
+        From there, the tests are run.
+        Firstly we check that the HTTP code is 200 (successful)
+        Finally, we check that the view is serving the correct
+        template.
+        """
         testuser = User.objects.create(
             username='testuser',
             password='pwd',
@@ -30,6 +60,17 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'add_complaint.html')
 
     def test_get_edit_complaint_page(self):
+        """
+        TEST GET EDIT COMPLAINT PAGE
+        This test tests the behaviour of the
+        edit_complaint function based view.
+        As protected by authentication, create a testuser
+        then use the force_login method to login test user.
+        From there, the tests are run.
+        Firstly we check that the HTTP code is 200 (successful)
+        Finally, we check that the view is serving the correct
+        template.
+        """
         testuser = User.objects.create(
             username='testuser',
             password='pwd',
@@ -54,6 +95,16 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'edit_complaint.html')
 
     def test_can_add_complaint(self):
+        """
+        TEST CAN ADD COMPLAINT
+        This test tests the CREATE aspect of the
+        apps CRUD functionality.
+        As protected by authentication, create a testuser
+        then use the force_login method to login test user.
+        Following the force login, I create a test complaint
+        with valid data and check that the post submission with
+        valid data redirects to the ROOT directory (homepage).
+        """
         testuser = User.objects.create(
             username='testuser',
             password='pwd',
@@ -78,6 +129,21 @@ class TestViews(TestCase):
         self.assertRedirects(response, '/')
 
     def test_can_delete_complaint(self):
+        """
+        TEST CAN DELETE COMPLAINT
+        This test tests the DELETE aspect of the
+        apps CRUD functionality.
+        As protected by authentication, create a testuser
+        then use the force_login method to login test user.
+        Following the force login, I create a test complaint
+        with valid data only this time I'm creating the complaint
+        directly in the database. I then call the delete-complaint
+        URL and cpass in the log number of the complaint.
+        I run a check on the redirect url which again is directing
+        to the home page. Then I assign the complaint I just deleted
+        to a variable and check its length is equal to 0, as expected
+        the delete function has reduced the objects in the db to 0.
+        """
         testuser = User.objects.create(
             username='testuser',
             password='pwd',
