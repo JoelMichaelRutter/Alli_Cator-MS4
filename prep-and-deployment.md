@@ -144,19 +144,67 @@ To continue preparing the project for an initial deployment, follow the steps be
 
     At this stage, commit and push your code to GitHub ready for the next steps towards deployment.
 
-# **Cloudinary Setup**
+# **Cloudinary Setup & Integration**
+As static files such as CSS/JS and images will eventually become a part of the project, and as Heroku does not serve static files, we need to host our static files on a hosting service. For this project, I used Cloudinary via an API. Follow the below steps to set up a Cloudinary account and integrate Cloudinary into the workspace.
+1. Visit [Cloudinary.com]( https://cloudinary.com/) and register for an account. You will need to verify your email to do this.
+2. Once verified, log into your account and navigate to the dashboard. 
+3. Once in the dashboard, locate the API Environment Variable and use the copy to clipboard link.
 
+    ![cloudinary-1](readme-files/images/deployment/25-cloudinary-dashboard.png)
 
+4. Return to the workspace and open the “env.py” file that was set up earlier in the preparation process.
+5. In the env.py file, just beneath where we previously set the SECRET_KEY and DATABASE_URL variables, use the os.environ method to set the CLOUDINARY_URL to the value that was just copied out of the Cloudinary dashboard as a string (Please note: You must remove the prefix from the URL “CLOUDINARY_URL=”. Refer to the screenshot but note that the characters have been redacted for security purposes.
 
+    ![cloudinary-2](readme-files/images/deployment/26-cloudniary-url-settings.png)
 
+6. Now that the Cloudinary URL is included in our local environment variables, we need to return to the Heroku application and add it to the deployment environment variables as well. 
 
+    ![cloudinary-3](readme-files/images/deployment/27-cloudinary-url-heroku-vars.png)
 
+7. In the Heroku config vars, add the following:
 
+    ![cloudinary-4](readme-files/images/deployment/28-disable-collect-static.png)
 
+    This will prevent the Heroku build from failing at this time because at the time of this initial deployment, we don’t have any static directories files like CSS, JavaScript or media to use at the moment and without this variable in place for the moment, we won’t be able to complete an initial deployment. We will be removing this when we complete our final deployment. Once the Cloudinary URL and DISABLE_COLLECTSTATIC environment variables have been added to Heroku, we need to add some code to the workspace. Open the settings.py file in the workspace and follow the below steps:
 
+8. In the installed apps section of the settings.py file, add the Cloudinary libraries just above the “Django.contrib.staticfiles” list element using the following code excerpt:
 
+    ![cloudinary-storage-settings-1](readme-files/images/deployment/29-cloudinary-storage-settings.png)
 
+9. Add the regular Cloudinary library just beneath the Django.contrib.staticfiles list element:
 
+    ![cloudinary-storage-settings-2](readme-files/images/deployment/30-cloudinary-settings.png)
+
+At this stage, we need to add some code to tell our Django application where to store our media and static files. Please follow the below steps:
+
+1. Scroll down to the static files section of the settings.py file and add the following code to enable the use of static files:
+
+    * Add a Static file storage variable by adding the code in the screenshot below the “STATIC_URL” variable. 
+
+        ![cloudinary-storage-settings-3](readme-files/images/deployment/31-static-files-storage-settings.png)
+
+    * Add a Static file directory variable below the static files storage variable. Follow the screenshot below:
+
+        ![cloudinary-storage-settings-4](readme-files/images/deployment/32-static-files-dirs-settings.png)
+
+    * Add a STATIC_ROOT variable in and assign the value in the screenshot below:
+
+        ![cloudinary-storage-settings-5](readme-files/images/deployment/33-static-root-settings.png)
+    
+2. Now that the necessary static files steps have been completed, just below the code that was added, we will now need to enter some similar code for our media files:
+
+    * Add a media URL variable:
+
+        ![cloudinary-media-settings-1](readme-files/images/deployment/34-media-dir-settings.png)
+
+    * Add a DEFAULT_FILE_STORAGE variable and assign it the value detailed in the screenshot:
+
+        ![cloudinary-media-settings-2](readme-files/images/deployment/35-media-def-file-storage-settings.png)
+
+# **Templates Settings**    
+At this stage, we have linked up our application to Cloudinary. Before we can start our first build, we need to tell the settings.py file where our templates will be stored. Scroll back up to the top of the settings.py file and just below the BASE_DIR variable, add the following code:
+
+1. Add a templates directory using the screenshot below:
 
 
 
