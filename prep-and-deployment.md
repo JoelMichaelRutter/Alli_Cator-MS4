@@ -206,11 +206,35 @@ At this stage, we have linked up our application to Cloudinary. Before we can st
 
 1. Add a templates directory using the screenshot below:
 
+    ![templates-settings-1](readme-files/images/deployment/37-templates-dir-settings.png)
 
+2. Scroll down to the TEMPLATES variable and add in the TEMPLATES_DIR variable you set just a moment ago into the ‘DIRS’ key of the dictionary:
 
+    ![templates-settings-2](readme-files/images/deployment/38-templates-dir-settings-2.png)
 
+# **Setting Up Allowed Hosts**    
+Finally, before we can complete the initial deployment, we must add Heroku into our list of allowed hosts, if we fail to do this, the build in Heroku will fail. Scroll up to the ALLOWED_HOSTS variable inside settings.py and add the following code:
 
+![allowed-hosts](readme-files/images/deployment/39-allowed-hosts.png)
 
+Please bear in mind that if you are deploying the app to Heroku yourself, you will need to enter whatever you called the app rather than the name of my Heroku application.
 
+# **Creating a Template Directory**
+Before I completed my first Heroku build, I added in some directories into the top level of the project so that I could store my templates, static files and media. This needs to be on the same directory level as the manage.py file as that is where Django will be looking for the directories.
 
+![create-template-dir](readme-files/images/deployment/40-create-template-dir.png)
 
+# **Creating a Procfile**
+The final step that we need to take before attempting a first build on Heroku is to create a Heroku Procfile. Without this file, Heroku will be unable to build and run the Django application we have created. Follow the below steps to create and write the Procfile.
+
+1. In the top level of the project (the same level as the manage.py file), create a new file called “Procfile” (note that this file must be named with a capital p):
+
+![procfile-1](readme-files/images/deployment/41-procfile1.png)
+
+2. Open the newly created Procfile and input the following code
+
+![procfile-2](readme-files/images/deployment/42-procfile2.png)
+
+Please note that in the above code, I have referenced the name of my Django project “allicatorSystem”. When completing your own project, this code would need to change to reference the name of the Django project you set up.
+
+At this stage, I saved all of my files, committed them and pushed them to GitHub ready for a first deployment attempt of the skeleton project.
