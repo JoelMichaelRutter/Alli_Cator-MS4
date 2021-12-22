@@ -2,7 +2,24 @@
 When deploying this application, I deployed very early on in the development stages to ensure that I had a solid platform to work on and to ensure that I didn’t run in to any problems towards the project submission. If you wish to use this code as a starting point for your own project, I recommend adopting the same philosophy.
 
 Within this section I will detail the steps that I took towards the initial deployment of the application and the very important steps I took for the final deployment which must be completed when the app is moving out of the production environment and into a live space.
-# **Deployment Preparation**
+## Table of contents
+* ### [Deployment Preparation](#preparing-workspace)
+* ### [Heroku Setup](#heroku-initial-setup)
+* ### [Setting Environment Variables & Settings - Workspace & Heroku](#env-workspace-and-heroku)
+* ### [Setting up Cloudinary](#cloudinary-setup)
+* ### [Templates Settings](#template-settings)
+* ### [Setting up Allowed Hosts](#allowed-hosts)
+* ### [Creating a Templates Directory](#template-directory)
+* ### [Creating a Procfile](#procfile)
+* ### [Deploying the initial Skeleton Project](#initial-deployment)
+* ### [Installing and Implementing Django Summernote](#summernote)
+* ### [Installing and Implementing Django All-Auth](#all-auth)
+* ### [Installing and Implementing Django import-export](#import-export)
+* ### [Collecting Static Files](#collect-static-files)
+* ### [Final Deployment](#final-deployment-of-project)
+
+
+# **<a id="preparing-workspace"></a>Deployment Preparation**
 To start the development and deployment process, I installed several packages into the workspace. I will list the packages, their purposes and the commands required to install them below:
 1. **Django & Gunicorn** – Installed with “pip3 install django gunicorn”
     * **Django** – This is the framework I used for the project. It is a high-level python framework with lots of pre-installed and pre-coded functionality which is very useful for rapid development. You’ll find more information in the README file within the technologies section.
@@ -23,7 +40,7 @@ Any time that you install an external library or package, run the following comm
 **IMPORTANT** - If you clone my repository, you will have a copy of my requirements.txt file. To make things easier in terms of installing all of the libraries I used, please
 enter the following command into the terminal "pip3 install -r requirements.txt". This will install all the dependencies in the requirements.txt file.
 
-# **Heroku - Initial Setup**
+# **<a id="heroku-initial-setup"></a>Heroku - Initial Setup**
 1. Go to [Heroku](https://id.heroku.com/login) and signup for an account if you don’t already have one. If you do, sign in so that you can see the Heroku dashboard. 
 5. Click the new button in the top right hand section and select “Create New App”
 6. Give the application a name and select the region. When selecting a region, select the option that is closest to you. 
@@ -64,7 +81,7 @@ We have completed the necessary steps in the “Resources” tab now. Once the a
 
 3. Once the string of text assigned to the “DATABASE_URL” variable has been copied, return to the workspace.
 
-# **Workspace & Heroku - Environment Variables & Initial Settings**
+# **<a id="env-workspace-and-heroku"></a>Workspace & Heroku - Environment Variables & Initial Settings**
 At this point, I had already installed the relevant dependencies to get the project to work. The details of such dependencies and the commands and caveats required to install and use them are detailed elsewhere within this document. In the same directory as the manage.py file, create a new file called “env.py”. You will need to use this file to store the environment variables for the project so that it can function locally.
 
 ![env-py-1](readme-files/images/deployment/8-env-py.png)
@@ -144,7 +161,7 @@ To continue preparing the project for an initial deployment, follow the steps be
 
     At this stage, commit and push your code to GitHub ready for the next steps towards deployment.
 
-# **Cloudinary Setup & Integration**
+# **<a id="cloudinary-setup"></a>Cloudinary Setup & Integration**
 As static files such as CSS/JS and images will eventually become a part of the project, and as Heroku does not serve static files, we need to host our static files on a hosting service. For this project, I used Cloudinary via an API. Follow the below steps to set up a Cloudinary account and integrate Cloudinary into the workspace.
 1. Visit [Cloudinary.com]( https://cloudinary.com/) and register for an account. You will need to verify your email to do this.
 2. Once verified, log into your account and navigate to the dashboard. 
@@ -201,7 +218,7 @@ At this stage, we need to add some code to tell our Django application where to 
 
         ![cloudinary-media-settings-2](readme-files/images/deployment/35-media-def-file-storage-settings.png)
 
-# **Templates Settings**    
+# **<a id="template-settings"></a>Templates Settings**    
 At this stage, we have linked up our application to Cloudinary. Before we can start our first build, we need to tell the settings.py file where our templates will be stored. Scroll back up to the top of the settings.py file and just below the BASE_DIR variable, add the following code:
 
 1. Add a templates directory using the screenshot below:
@@ -212,19 +229,19 @@ At this stage, we have linked up our application to Cloudinary. Before we can st
 
     ![templates-settings-2](readme-files/images/deployment/38-templates-dir-settings-2.png)
 
-# **Setting Up Allowed Hosts**    
+# **<a id="allowed-hosts"></a>Setting Up Allowed Hosts**    
 Finally, before we can complete the initial deployment, we must add Heroku into our list of allowed hosts, if we fail to do this, the build in Heroku will fail. Scroll up to the ALLOWED_HOSTS variable inside settings.py and add the following code:
 
 ![allowed-hosts](readme-files/images/deployment/39-allowed-hosts.png)
 
 Please bear in mind that if you are deploying the app to Heroku yourself, you will need to enter whatever you called the app rather than the name of my Heroku application.
 
-# **Creating a Template Directory**
+# **<a id="template-directory"></a>Creating a Template Directory**
 Before I completed my first Heroku build, I added in some directories into the top level of the project so that I could store my templates, static files and media. This needs to be on the same directory level as the manage.py file as that is where Django will be looking for the directories.
 
 ![create-template-dir](readme-files/images/deployment/40-create-template-dir.png)
 
-# **Creating a Procfile**
+# **<a id="procfile"></a>Creating a Procfile**
 The final step that we need to take before attempting a first build on Heroku is to create a Heroku Procfile. Without this file, Heroku will be unable to build and run the Django application we have created. Follow the below steps to create and write the Procfile.
 
 1. In the top level of the project (the same level as the manage.py file), create a new file called “Procfile” (note that this file must be named with a capital p):
@@ -239,7 +256,7 @@ Please note that in the above code, I have referenced the name of my Django proj
 
 At this stage, I saved all of my files, committed them and pushed them to GitHub ready for a first deployment attempt of the skeleton project.
 
-# **First Deployment (Skeleton Project)**
+# **<a id="initial-deployment"></a>First Deployment (Skeleton Project)**
 ## **Heroku Dashboard**
 Navigate back to your application dashboard on Heroku and click the “Deploy” tab.
 
@@ -269,7 +286,7 @@ see that the application is not running on a local server but instead on our Her
 
 ![heroku-deploy-successful](readme-files/images/deployment/47-heroku-deploy--successful.png)
 
-# **Installing and implementing Summernote**
+# **<a id="summernote"></a>Installing and implementing Summernote**
 This application has a dedicated admin site. To make the administration of the data in the application more user friendly, I used the Django Summernote package.
 * To download Summernote to the list of dependencies, use the following command: pip3 install django-summernote.
 * I then added Summernote to the list of installed apps in settings.py above the ‘allicatorComplaints’ app.
@@ -293,7 +310,7 @@ In terms of implementing Summernote, we need to go to the admin.py file. Let’s
 * List_display – This is the data that is available in the data table in the admin site.
 * Search_fields – This provides a search bar inside the admin site, which allows an admin to search for an entry via fields from the model.
 
-# **Installing and implementing Django all auth**
+# **<a id="all-auth"></a>Installing and implementing Django all auth**
 1. Firstly, to download all auth, type the following command into the terminal: “pip3 install Django-allauth”.
 2. Once the package has downloaded, it must be added to the requirements.txt file so that on final deployment, Heroku can install the package as well.  
 3. From here, the URLs for the relevant all-auth templates and functionality must be added to the main urls.py file. In my case, the main urls.py file is in the top-level project directory named “allicatorSystem”. Review the code screenshot below for an example.
@@ -334,7 +351,7 @@ We don’t need to actually make the migrations as we haven’t made any changes
     * One caveat to add when completing customisation of these allauth templates is to remove the “account/” prefix in the extension templating statement at the top of the file so that the templates extend from the custom base.html template.
 
 
-# **Installing and implementing Django import-export**
+# **<a id="import-export"></a>Installing and implementing Django import-export**
 One of the features I added following the planning stage was functionality to export the data from the Complaint table whilst in the admin site. To implement this feature, I installed the import-export Django library. You can find the documentation for the library [here](https://django-import-export.readthedocs.io/en/latest/getting_started.html). To import the library, use the following command:
 
 * pip3 install django-import-export
@@ -366,16 +383,15 @@ Finally, in the admin class itself:
 
 * Where we define the admin class, pass in the ExportMixin we imported as the first parameter. It must be the first parameter or it won’t work.
 * Finally, at the bottom of the class, declare a resource_class variable and assign it an instance of the resource class you created, in my case ComplaintExportResource.
-Now when I enter my site and navigate to the complaints model, you can see I have export functionality at the top.
 <br clear="right"/>
-
+Now when I enter my site and navigate to the complaints model, you can see I have export functionality at the top.
 ![import-export-4](readme-files/images/deployment/59-import-export-4.png)
 
 By clicking this button, I can then use a dropdown to select which format I would like to download my data in.
 
 ![import-export-5](readme-files/images/deployment/60-import-export-5.png)
 
-# **Collecting Static Files Prior to Deployment**
+# **<a id="collect-static-files"></a>Collecting Static Files Prior to Deployment**
 Before I detail the steps I took to get my now developed application up and running, I will explain how to get the static files (images, media, JavaScript & CSS) from the workspace and onto Cloudinary.
 
 When I completed the initial deployment, there were no static files in the workspace. 
@@ -389,7 +405,7 @@ Now at the end of the development process, I need my styles to be uploaded to Cl
 
 **Please note:** Any changes made post deployment to the static files will require another static file collection as above and a redeployment of the GitHub branch in Heroku.
 
-# **Final Deployment**
+# **<a id="final-deployment-of-project"></a>Final Deployment**
 I deployed this a skeleton application early in the development process to ensure that I wouldn’t run into any errors last minute. I would strongly recommend that you do the same if you use this project.
 
 One of the main considerations when it comes to final deployment are the data models. Before putting the application into an environment where users will depend on the application, the data models must be final as any changes to this moving forward will cause problems for existing database entries. 
