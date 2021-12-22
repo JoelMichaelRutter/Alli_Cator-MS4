@@ -233,8 +233,162 @@ The final step that we need to take before attempting a first build on Heroku is
 
 2. Open the newly created Procfile and input the following code
 
-![procfile-2](readme-files/images/deployment/42-procfile2.png)
+![procfile-2](readme-files/images/deployment/41-procfile2.png)
 
 Please note that in the above code, I have referenced the name of my Django project “allicatorSystem”. When completing your own project, this code would need to change to reference the name of the Django project you set up.
 
 At this stage, I saved all of my files, committed them and pushed them to GitHub ready for a first deployment attempt of the skeleton project.
+
+# **First Deployment (Skeleton Project)**
+## **Heroku Dashboard**
+Navigate back to your application dashboard on Heroku and click the “Deploy” tab.
+
+![heroku-deploy-1](readme-files/images/deployment/42-heroku-deploy-1.png)
+
+In the deployment method section, click GitHub. If you haven’t already connected your account, you will need to connect it before you can follow the next steps.
+
+![heroku-deploy-2](readme-files/images/deployment/43-heroku-deploy-2.png)
+
+Once your account is connected, you can perform a search in the search bar for the GitHub repository you are using to store the code for the application. In my case, I searched for my repository
+“Alli_Cator-MS4”. Once you have entered your repository name, click “Search” and provided a matching repository is found, an option will appear below providing you with the button to connect the
+repository to Heroku. Click “Connect”.
+
+![heroku-deploy-3](readme-files/images/deployment/44-heroku-deploy-3.png)
+
+Scroll down to the bottom of the page, and click “Deploy branch”
+
+![heroku-deploy-4](readme-files/images/deployment/45-heroku-deploy-4.png)
+
+When deploying the application, it is good practice to view the build logs as this will allow you to identify any errors. You can do this by clicking the “View build logs” link. You can see from
+the build logs that the Django application has now been built in Heroku, once you see this, click the “Open app” button to open the application to check for a successful install.
+
+![heroku-deploy-5](readme-files/images/deployment/46-heroku-deploy-5.png)
+
+Provided that all the previous steps have been followed, when you open the app, you will see the same success page as when you run the application locally, only if you look at the URL bar, you can
+see that the application is not running on a local server but instead on our Heroku platform.
+
+![heroku-deploy-successful](readme-files/images/deployment/47-heroku-deploy--successful.png)
+
+# **Installing and implementing Summernote**
+This application has a dedicated admin site. To make the administration of the data in the application more user friendly, I used the Django Summernote package.
+* To download Summernote to the list of dependencies, use the following command: pip3 install django-summernote.
+* I then added Summernote to the list of installed apps in settings.py above the ‘allicatorComplaints’ app.
+* Then I added the Summernote URLs to the URL patterns list in the allicatorSystem urls.py file. 
+    * urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('summernote/', include('django_summernote.urls'))
+    ]
+* At the top of the file, I imported the include module from Django so that I can include the urls from the allicatorComplaints application in the overall project. 
+
+![summernote-url](readme-files/images/deployment/49-summernote-urls-1.png)
+
+In terms of implementing Summernote, we need to go to the admin.py file. Let’s step through the code:
+
+![summernote-code](readme-files/images/deployment/48-summernote-implementation.png)
+
+* Firstly, the Complaint model is added to the class decorator via the @admin.register() method.
+* I define an admin class (line 68), in my case it’s called ComplaintAdmin. It takes two parameters ExportMixin (I’ll cover this later) and SummernoteModelAdmin. This Summernote module is imported at the top of the file.
+* Passing this into the class allows the class to inherit all the methods of Summernote. Let’s look at them quickly.
+* List_filter – This variable is assigned a tuple with the fields on the model that can be used to filter the data in the admin site.
+* List_display – This is the data that is available in the data table in the admin site.
+* Search_fields – This provides a search bar inside the admin site, which allows an admin to search for an entry via fields from the model.
+
+# **Installing and implementing Django all auth**
+1. Firstly, to download all auth, type the following command into the terminal: “pip3 install Django-allauth”.
+2. Once the package has downloaded, it must be added to the requirements.txt file so that on final deployment, Heroku can install the package as well.  
+3. From here, the URLs for the relevant all-auth templates and functionality must be added to the main urls.py file. In my case, the main urls.py file is in the top-level project directory named “allicatorSystem”. Review the code screenshot below for an example.
+
+![all-auth-1](readme-files/images/deployment/50-all-auth-1.png)
+
+4. Once the all auth URLs have been included, open the settings.py file. Inside the file, the allauth functionality must be added to the “INSTALLED_APPS” list. I have detailed the lines that must be added in the screenshot below.
+
+![all-auth-2](readme-files/images/deployment/51-all-auth-2.png)
+
+5. Once the previous elements have been added into the “INSTALLED APPS” list, just beneath the “INSTALLED_APPS” variable, add a SITE_ID variable and set it to “1”:
+
+![all-auth-3](readme-files/images/deployment/52-all-auth-3.png)
+
+6. Once the SITE_ID variable is set, just beneath it, you will need to add two variables. One is for redirecting the user when they sign in and one for when they sign out. In our case, we want to redirect the user to the home page of the application once they have signed in or out so we will set the valuable of these variables to the root directory. The two variables to set and their values are as follows:
+
+    * LOGIN_REDIRECT_URL = '/'
+    * LOGOUT_REDIRECT_URL = '/'
+
+7. Following this, all files must be saved and database migrations need to be ran as we have included new applications which will connect up to our “Users” model. To run the migrations use the run python3 manage.py migrate command.
+
+![all-auth-4](readme-files/images/deployment/53-all-auth-4.png)
+
+We don’t need to actually make the migrations as we haven’t made any changes to our data models. 
+
+8. To check if the allauth functionality is now working, start the project and append “/accounts/login, logout or signup” to the URL to check that the correct templates are being rendered. You will notice that the templates that are being rendered are not in keeping with the rest of the UI and styling conventions. To amend the authentication templates being served, follow the below steps:
+
+    * Firstly, check which version of Python you are using. This needs to be confirmed as it will affect the command you will enter to pull the templates into the templates directory. To obtain this information type “ls ../.pip-modules/lib” into the terminal. Note from the screenshot below, at the time of writing and application development, on my machine, I was using V3.8 of python.
+
+        ![all-auth-5](readme-files/images/deployment/54-all-auth-5.png)
+
+    * From here, we need to copy the accounts templates from the all-auth library directory which is stored in the bowels of the application into our templates directory so that we can access and style them. To do this type the following command into the terminal “cp -r /workspace/.pip-modules/lib/python3.8/site-packages/allauth/templates/* ./templates”.
+    * You will now see that the various required templates have been copied in their directories from their original location in the site packages, into the templates directory:
+
+        ![all-auth-6](readme-files/images/deployment/55-all-auth-6.png)
+
+    * As you can see, there are multiple directories here. The templates we need to focus on concerning sign in, sign out and sign up. These templates are kept in the “account” directory. Open the account directory and locate the template and you will see that it is a standard Django template that you can effect as if it was a custom template created by you. 
+    * One caveat to add when completing customisation of these allauth templates is to remove the “account/” prefix in the extension templating statement at the top of the file so that the templates extend from the custom base.html template.
+
+
+# **Installing and implementing Django import-export**
+One of the features I added following the planning stage was functionality to export the data from the Complaint table whilst in the admin site. To implement this feature, I installed the import-export Django library. You can find the documentation for the library [here](https://django-import-export.readthedocs.io/en/latest/getting_started.html). To import the library, use the following command:
+
+* pip3 install django-import-export
+
+Once installed, ensure you run the “pip3 freeze –local > requirements.txt” command to add the library to the list of dependencies so that it’s included in the final deployment.
+This library is implemented within the admin.py file of the application. There are a few imports required at the top of the admin.py file to implement the same functionality as me:
+
+![import-export-1](readme-files/images/deployment/56-import-export-1.png)
+
+1. I’m importing the ExportMixin that is passed in as a parameter to the ComplaintAdmin class.
+2. I’m importing the fields and resources modules to use in the ComplaintExportResource class which controls the behaviour of the export functionality.
+3. I’m importing the ForeignKeyWidget from the import-export library, this is used within the ComplaintExportResource class to replace the user ID with the users username.
+4. I’m importing the User model so that I can use it in the ForeignKeyWidget.
+5. I’m importing the Complaint model to use in the ComplaintExportResource resource class.
+
+Let’s take a look at the code:
+
+<img src="readme-files/images/deployment/57-import-export-2.png" align="left" width="500" alt="an image of the admin class integrating the import-export library">
+
+* Firstly, on line 28, the model the resource class is going to affect is defined, in my case, it’s the complaint model.
+* Secondly, from line 29 to 39, we define the fields that will be exported from the application. This way if there is data you want to prevent from being exported, you can.
+* On line 42, I use the exclude variable to exclude the database ID column from the export, this can again be used to prevent columns from being exported.
+* From line 46 to 55, because the ID is now excluded, the order of the columns was affected. This tuple defines the strict order in which the columns from the database should be displayed. 
+* Finally, from line 60, I change the case_owner field within the resource class from the users user id (integer – not very useful for reporting purposes) to the users username by using the ForeignKeyWidget.
+<br clear="left"/>
+Finally, in the admin class itself:
+
+<img src="readme-files/images/deployment/58-import-export-3.png" align="right" width="700">
+
+* Where we define the admin class, pass in the ExportMixin we imported as the first parameter. It must be the first parameter or it won’t work.
+* Finally, at the bottom of the class, declare a resource_class variable and assign it an instance of the resource class you created, in my case ComplaintExportResource.
+Now when I enter my site and navigate to the complaints model, you can see I have export functionality at the top.
+<br clear="right"/>
+
+![import-export-4](readme-files/images/deployment/59-import-export-4.png)
+
+By clicking this button, I can then use a dropdown to select which format I would like to download my data in.
+
+![import-export-5](readme-files/images/deployment/60-import-export-5.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
