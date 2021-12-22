@@ -16,8 +16,8 @@ On that basis, I’ve built a full stack application to pair with the Complaints
 * ### [Technologies](#technologies-used)
 * ### [Testing](#application-testing)
 * ### [Deployment](#deploying-the-site)
-* ### [Reflection](#project-reflection)
 * ### [Further Development](#further-development-scope)
+* ### [Reflection](#project-reflection)
 * ### [Credits](#project-credits)
 * ### [Acknowledgement](#project-acknowledgements)
 # <a id="deployed-website"></a>
@@ -120,14 +120,14 @@ I chose my font to pair with Bootstraps standard font, I knew I wanted some sort
 
 ![roboto-mono-700](readme-files/images/readme/10-font-700.png)
 
-# **Functional Features, Code Breakdown and Explanation**
+# **<a id="functional-features"></a>Functional Features, Code Breakdown and Explanation**
 Within this section, I will firstly detail the data model, the functional features of the application and how they relate to the user stories. From there, I will provide a front and back-end code breakdown and explanation so that should you need to understand, use, or manipulate the code for this application, you can do so with ease. Where required, I will utilise screenshots to highlight the functionality of the application.
 
 As this application is a data-driven CRUD application, I will start with the final data model and then move to the main CRUD functionality. Finally, I’ll explain the additional libraries utilised within the project.
 
 **Please note:**  the main custom (non-library) CRUD functionality of the application is protected by authentication which will be discussed following the main CRUD breakdown. As a result, all code explained below is on the basis of successful sign up and sign in using the Django Allauth library.
 
-## Final Data Model
+## **Final Data Model**
 As this application is data driven, everything stems from the data model. From there I will explain the views and the templates.
 
 <img src="readme-files/images/readme/11-model-code.png" alt="Code for allicator final data model" width="600"/>  
@@ -395,7 +395,7 @@ Below I will list the variety of technology I used during the development proces
 ### **Deployment**
 * **[Heroku](https://en.wikipedia.org/wiki/Heroku)** – A cloud hosting service where the finalised application is deployed.
 
-### Other
+### **Other**
 * **[Microsoft Visio](https://en.wikipedia.org/wiki/Microsoft_Visio)** - Was used to create the front end wireframes.  
 * **[Microsoft Powerpoint](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)** - Used to plan the application features, the data model, write user stories, prepare images for use in this document, prepare the colour palette, write questions for my mentor and just general planning. 
 * **[Microsoft Word](https://en.wikipedia.org/wiki/Microsoft_Word)** - I used this word processor to write the README files.
@@ -403,5 +403,53 @@ Below I will list the variety of technology I used during the development proces
 # **Application Testing**  
 Please click [here](testing.md) to see a full breakdown of all testing completed on the application.
 
-# **Preparing the workspace and deploying the application**
+# **<a id="deploying-the-site"></a>Preparing the workspace and deploying the application**
 Please click [here](prep-and-deployment.md) to see a full explanation of the steps I took to prepare the workspace for development, how to perform an initial deployment, the integration and implementation of additional libraries as well as the final deployment of the application.
+
+## **Forking the repository**
+Should you wish to use the site code inside the repository without affecting the original repository, you can make a fork and create a copy of the repository which you can view and amend the code within. To create a fork, follow these steps:
+1. Login to [GitHub](https://github.com/) and locate the [Ali-Cator-MS4](https://github.com/JoelMichaelRutter/Alli_Cator-MS4) repository.
+2. In the top right-hand corner of the repository, you will see three buttons just below your profile icon. The rightmost button is called “fork”. Click this button.  
+3. The repository will now be copied to your own GitHub account.
+
+## **Cloning the repository**
+You can create a clone of the repository inside your development environment. To do this, follow these steps:
+1. Login to [GitHub](https://github.com/) and locate the [Ali-Cator-MS4](https://github.com/JoelMichaelRutter/Alli_Cator-MS4) repository.
+2. Whilst in the repository, you will see the various files contained within. Above this list, you will see a button labelled “code”. The button will have a small download icon beside it.  
+3.	When you click this icon, a small dropdown will open. Inside the dropdown will be the URL for the deployed site. Copy this URL by clicking the clipboard icon.  
+4.	Open the Git Pod integrated development environment. 
+5.	Whilst in the development environment, navigate to the bash terminal.
+6.	In the bash terminal, enter “git clone”, then paste in the URL copied from the GitHub repository and hit enter.
+7.	A clone of all files will now be pulled into the workspace.
+
+It’s worth noting that you will also need to create your environment variables either via your IDE or an env.py file. You will also need to run the following command: pip3 install -r requirements.txt
+
+The command above will download all the dependencies you need for a clone of the project in it’s current state based on the dependencies within the requirements.txt file.
+
+# **Further Development Scope**
+I really enjoyed creating this application. It really rang true to a role that I’ve held for years. Rather than overpromise and underdeliver, I wanted to get a really robust and watertight minimum viable product and then begin building from that with extra features. Now that I have finished this initial development cycle, I have so many more ideas; especially now that the app exists and I have something tangible to play around with.
+
+Some of the ideas that I have for the further development of this application are:
+
+1.	**User filtering/ search** – Whilst the list view serves its purpose, and users can search using control and f in the browser, I think some sort of dedicated search bar in the nav would be a welcome addition so as to narrow a complaint entry down quickly. Granted this could also be done by pasting the log number into the relevant url pattern but it isn’t very user friendly. 
+2.	**Colour coding** – Its common for staff members to colour code the lines on their spreadsheet depending on the status of the complaint. This would be super easy to implement, I would just need to add some colour classes to my custom CSS and then add some templating logic to check certain things about an entry and if true, add the HTML but change the classes within the conditional statement truthy falsy blocks. This logic could also play into the filtering/search functionality above.
+3.	**Batch amend** – I would do some work on the admin side of the site and implement some sort of functionality to batch allocate complaints. If a colleague goes on leave or leaves the business, this would mean that the admin would need to change the case owner on all of the colleagues complaints, its perfectly possible to do it now but it would be very repetitive so some sort of batch change process so that multiple entries can be allocated to different users at once would be useful.
+4.	**Messaging** – I would include more messaging feedback, particularly when it comes to allauth. I did try to do some research as to how to add messaging on unsuccessful signin, incorrect password etc but it looked reasonably complex and I hadn’t factored it in to my initial development time. 
+5.	**Email confirmation/password reset** – I would like to include email confirmation and password functionality. I know that this uses aspects of Django that I don’t know yet and I didn’t want to risk my code at the end of the development process and do something that I didn’t know how to undo. 
+
+# **Project Reflection**
+Again, I’ve thoroughly enjoyed myself whilst completing this project. I’m finally starting to believe in myself when it comes to software development. I can see myself doing this for a career. I’ve got lots to learn and I’m really excited. I’m also really pleased to get my first full stack application under my belt, I feel very proud of myself. I’m looking forward to taking what I’ve learned over the course of the project and applying it in different circumstances and also increasing my knowledge of this fantastic framework.
+
+# **Project Credits**
+## **Code**
+In no particular order, I’d like to list the sources I pulled inspiration, code and debugging advice from.
+
+* **[Accordion Multiple Expansion Issue](https://stackoverflow.com/questions/29171462/how-to-do-a-bootstrap-accordion-filled-by-a-database)** – Thanks to the stack overflow community on this one for giving me the idea to include my template variables inside the data attributes for the accordions and Modals to make them unique.
+* **[Query Override to Filter by Username](https://stackoverflow.com/questions/38471260/django-filtering-by-user-id-in-class-based-listview)** – Thanks to Eska on this stack overflow thread who gave me the code.
+* **[Flash custom messages in Django](https://www.youtube.com/watch?app=desktop&v=8kBo91L8JTY)** – Thanks to Sharma coder for their video on how to flash messages in Django.
+* **[Django custom error pages](https://stackoverflow.com/questions/17662928/django-creating-a-custom-500-404-error-page)** – Thanks to Flimm for their answer on this Stack Overflow thread.
+* **Code Institutes Full Stack Development Course** – It really helped going back over some of the content within the Django modules and with the setting up of the workspace.
+
+# **Project Acknowledgements**
+* **Code Institute Tutor Support** - For pushing me in the right direction with tricky bugs, I would specifically like to mention James, Sheryl and Igor who were sensational.
+* **My Mentor** - As always for keeping me real, for his useful feedback and general greatness. 
