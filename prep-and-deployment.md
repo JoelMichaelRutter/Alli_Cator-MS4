@@ -375,20 +375,41 @@ By clicking this button, I can then use a dropdown to select which format I woul
 
 ![import-export-5](readme-files/images/deployment/60-import-export-5.png)
 
+# **Collecting Static Files Prior to Deployment**
+Before I detail the steps I took to get my now developed application up and running, I will explain how to get the static files (images, media, JavaScript & CSS) from the workspace and onto Cloudinary.
 
+When I completed the initial deployment, there were no static files in the workspace. 
 
+Now at the end of the development process, I need my styles to be uploaded to Cloundinary so that they can then be served on Heroku. To do this:
+1. I ensured that all my static files were saved.
+2. I ran “python3 manage.py collectstatic” in the terminal
+3. You will then be asked to type yes or no to overwrite all versions of the static files for the project.
+4. Type yes to agree.
+5. Django will collect the static files and store them on Cloudinary for use in the deployed project.
 
+**Please note:** Any changes made post deployment to the static files will require another static file collection as above and a redeployment of the GitHub branch in Heroku.
 
+# **Final Deployment**
+I deployed this a skeleton application early in the development process to ensure that I wouldn’t run into any errors last minute. I would strongly recommend that you do the same if you use this project.
 
+One of the main considerations when it comes to final deployment are the data models. Before putting the application into an environment where users will depend on the application, the data models must be final as any changes to this moving forward will cause problems for existing database entries. 
 
+Below, I will detail the steps that must be taken in order to complete a final deployment of this application. 
 
+1. **IMPORTANT** - Before attempting any sort of final deployment, YOU MUST set the debug flag in the settings.py file to false. Not doing so would leave potentially sensitive data on your application on view on the debug screens. It also prevents Heroku from accessing the static files on Cloudinary.
 
+    ![final-deploy-1](readme-files/images/deployment/61-final-deploy-1.png)
 
+2. Just below the debug setting, add a new variable called X_FRAME_OPTIONS and set its value to ‘SAMEORIGIN’. Without this setting, the Summernote functionality for the Admin site would not work. The application will also be far less secure.
 
+    ![final-deploy-2](readme-files/images/deployment/62-final-deploy-2.png)
 
+3. Navigate to the application dashboard in Heroku. In the settings tab, click reveal config vars. In the config vars, delete the DISABLE_COLLECTSTATIC variable that was set during the initial deployment of the project by clicking the cross button. Without doing this, the deployed project would not be able to render any static files such as CSS or JS. 
 
+    ![final-deploy-3](readme-files/images/deployment/63-final-deploy-3.png)
 
+4. Navigate to the deploy tab as we did in the initial deployment, scroll down to the end and click deploy branch. View the build log as the application is built to ensure that everything is in its place. 
 
+5. Once the build has completed, click the open app button on Heroku and check the application to ensure that it is working correctly.
 
-
-
+Provided that you have followed all the steps within this document, the application should be deployed successfully.
