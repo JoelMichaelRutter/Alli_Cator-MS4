@@ -154,6 +154,9 @@ These commands create the database table based on the model I just described whi
 
 ## **Base.html - template**
 My application uses templating logic so all the pages within extend from the base.html page. This page contains the head, meta, links, CDNs and scripts used to make the site function as it should. It also contains the navigation which in turn contains templating logic which renders different nav links depending on whether the user is authenticated or not. If authenticated, the user will be able to access the CRUD functionality of the application via the nav and page, otherwise, the only links available to them are those for “register” or “sign in”.
+## **Error Templates**
+Django handles a variety of errors internally using error handlers. These errors are 400, 403, 404 and 500. As Django is looking within my templates directory for my custom templates, the internal error handlers that handle the errors specified above would display a default template which is not akin to the UI that I have designed. As a result, I have added custom templates corresponding to the errors above in terms of file name (400.html, 403.html, 404.html, 500.html). As these templates are within my custom templates directory, the django error handler functions that are built in to the framework now use the custom templates rather than the blank templates. My custom templates extend from the base.html template and provide the user with the error that has occured. They also provide the user with a link back to the home page so that they don't have to use the navigation or their browser buttons to get back. An example of the 404.html template is below where the user has entered an incorrect complaint log number into the URL pattern.
+![404-error](readme-files/images/readme/404.png)
 ## **CRUD**
 ### **Read**
 The first part of the functionality I developed and hence the first part I will explain is the “Read” element of the application’s CRUD functionality. 
@@ -188,7 +191,7 @@ through the returned data structure from the view (complaint_list) and passes it
 through into their corresponding HTML data containers using template variable syntax ({{}}) and dot notation. An annotated example is provided below:
 ![view-complaint-list-expanded](readme-files/images/readme/14-view-complaint-template-2.png)
 ### **Accordion Data**
-Depending on the screen resolution, the header data to identify the complaint is rendered in display: block with column headers beside the data (mobile and portrait tablet view) or display: grid with the column headers displayed in a container (landscape/portrait tablet view, up through laptops and larger screens).
+Depending on the screen resolution, the header data to identify the complaint is rendered in display: block with column headers beside the data (mobile and portrait tablet view) or display: grid with the column headers displayed in a container above the accordion (landscape/portrait tablet view, up through laptops and larger screens).
 The data within corresponds to the fields within the Complaint model and is inserted via template variables:
 1. **Log number** – This is rendered for each complaint and is also inserted into the accordion IDs as they are unique. This prevents all accordions from collapsing and expanding at once, giving the user control over the information they see. It correlates to the log_number CharField on the Complaint data model.
 2. **Customer surname** – This is rendered from the customer_surname column in the complaint table. It correlates to the customer_surname CharField on the Complaint data model.
