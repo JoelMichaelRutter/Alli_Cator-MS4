@@ -69,8 +69,6 @@ While a system such as this is usually designed for use on a laptop or desktop m
 
 One of the key principles behind the application was the reduction of information overload. If you look at the example spreadsheet that one of my colleagues provided to me and imagine this with 30 of the rows full of data, it would be very overwhelming. 
 
-Whilst a system such as this is usually designed strictly for use on a laptop or desktop monitor, I did approach the design of the application with a mobile first attitude. I also knew that I wanted to incorporate the libraries and frameworks that I’d learnt during this part of the course.
-One of the key principles behind the application was the reduction of information overload. If you look at the example spreadsheet below that one of my colleagues provided to me and imagine this with 30 of the rows full of data, it would be very overwhelming. 
 ![spreadsheet-example](readme-files/images/readme/2-excel-screenshot.png)
 The first thing I did was separate what data was key when it came to retrieving an update and through this process, I designed the data model for the application which is the driving force behind the application.
 At the beginning of this project, I created a plan with Microsoft Powerpoint. The first part of this plan consisted of a mind map around the technologies that I might use to develop the application to which I added the main CRUD functionality with an agile approach. Please note: this was the planning stage and some of the technologies or functionality may not have been implemented in the final version.  
