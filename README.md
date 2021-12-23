@@ -398,7 +398,7 @@ Below I will list the variety of technology I used during the development proces
 * **[GitHub](https://en.wikipedia.org/wiki/GitHub)** - was used as a code repository.
 ### **Deployment**
 * **[Heroku](https://en.wikipedia.org/wiki/Heroku)** – A cloud hosting service where the finalised application is deployed.
-
+* **[Cloudinary](https://en.wikipedia.org/wiki/Cloudinary)** - A cloud storage service for media, imagery and static files which serves said files to my deployed project on Heroku.
 ### **Other**
 * **[Microsoft Visio](https://en.wikipedia.org/wiki/Microsoft_Visio)** - Was used to create the front end wireframes.  
 * **[Microsoft Powerpoint](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)** - Used to plan the application features, the data model, write user stories, prepare images for use in this document, prepare the colour palette, write questions for my mentor and just general planning. 
