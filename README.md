@@ -403,7 +403,7 @@ Below I will list the variety of technology I used during the development proces
 * **[Microsoft Visio](https://en.wikipedia.org/wiki/Microsoft_Visio)** - Was used to create the front end wireframes.  
 * **[Microsoft Powerpoint](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)** - Used to plan the application features, the data model, write user stories, prepare images for use in this document, prepare the colour palette, write questions for my mentor and just general planning. 
 * **[Microsoft Word](https://en.wikipedia.org/wiki/Microsoft_Word)** - I used this word processor to write the README files.
-* **[Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel)** - 
+* **[Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel)** - I used this spreadsheeting tool to create and complete my manual testing spreadsheet.
 
 # **Application Testing**  
 Please click [here](testing.md) to see a full breakdown of all testing completed on the application.
